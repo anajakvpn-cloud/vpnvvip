@@ -23,7 +23,7 @@ background:linear-gradient(160deg,var(--bg1),var(--bg2) 52%,var(--bg3)) fixed}
 @keyframes d1{to{transform:translate3d(14vmax,10vmax,0) scale(1.1)}}
 @keyframes d2{to{transform:translate3d(-12vmax,-8vmax,0) scale(1.15)}}
 @keyframes d3{to{transform:translate3d(10vmax,-9vmax,0) scale(1.08)}}
-#app{position:relative;z-index:1;max-width:460px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 14px) 18px calc(118px + env(safe-area-inset-bottom))}
+#app{position:relative;z-index:1;max-width:460px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 30px) 18px calc(150px + env(safe-area-inset-bottom))}
 /* Liquid Glass */
 .glass{position:relative;background:linear-gradient(145deg,var(--g1),var(--g2));-webkit-backdrop-filter:blur(22px) saturate(180%);backdrop-filter:blur(22px) saturate(180%);
 box-shadow:inset 0 1px 0 var(--gl),inset 0 -1px 0 var(--gd),0 18px 40px -18px var(--sh),0 2px 6px -2px rgba(40,20,120,.10)}
@@ -31,6 +31,8 @@ box-shadow:inset 0 1px 0 var(--gl),inset 0 -1px 0 var(--gd),0 18px 40px -18px va
 background:linear-gradient(140deg,rgba(255,255,255,.95),rgba(255,255,255,.12) 28%,rgba(255,255,255,.04) 68%,rgba(255,255,255,.55));
 -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.8}
 .card{border-radius:30px;padding:20px}
+.card+.card,.card+.btn,.btn+.card{margin-top:16px}
+.page>.top{margin-bottom:6px}
 .page{animation:pin .55s var(--ease) both}
 .page.still,.page.still>*{animation:none!important}
 @keyframes pin{from{opacity:0;transform:translateY(14px) scale(.985)}}
@@ -93,7 +95,7 @@ background:linear-gradient(180deg,#9b78ff,#6a43f0);box-shadow:inset 0 1px 0 rgba
 .list{padding:8px;border-radius:30px}
 .srv,.app{display:flex;align-items:center;gap:13px;width:100%;padding:11px 12px;border:0;border-radius:22px;background:transparent;color:inherit;text-align:left;font:inherit;cursor:pointer;transition:background .3s,transform .3s var(--spring)}
 .srv:active{transform:scale(.97)}.srv.on{background:rgba(255,255,255,.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.7)}
-.flag{width:42px;height:42px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px rgba(255,255,255,.7),0 6px 12px -4px rgba(60,30,150,.4);background:rgba(255,255,255,.4);flex:none}
+.flag{width:42px;height:42px;border-radius:50%;object-fit:contain;padding:6px 4px;box-shadow:0 0 0 2px rgba(255,255,255,.7),0 6px 12px -4px rgba(60,30,150,.4);background:rgba(255,255,255,.75);flex:none}
 .srv .nm,.app .nm{flex:1;min-width:0;font-weight:700;font-size:15px;line-height:1.25}.nm small{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--mut)}
 .dot{width:7px;height:7px;border-radius:50%}
 .ms{font-size:12.5px;font-weight:700;color:var(--mut);font-variant-numeric:tabular-nums}
@@ -101,7 +103,8 @@ background:linear-gradient(180deg,#9b78ff,#6a43f0);box-shadow:inset 0 1px 0 rgba
 .tick svg{width:14px;height:14px;stroke-width:3;transform:scale(0);transition:transform .35s var(--spring)}
 .srv.on .tick{background:var(--acc);border-color:var(--acc)}.srv.on .tick svg{transform:scale(1)}
 .app{cursor:default}
-.app .main{display:flex;align-items:center;gap:13px;flex:1;min-width:0;color:inherit;text-decoration:none;border-radius:18px;transition:transform .3s var(--spring)}
+.app .main{display:flex;align-items:center;gap:13px;flex:1;min-width:0;color:inherit;text-decoration:none;border-radius:18px;border:0;background:none;padding:0;font:inherit;text-align:left;cursor:pointer;transition:transform .3s var(--spring)}
+.sm.ic{width:38px;padding:0;justify-content:center}.sm.ic svg.i{width:18px;height:18px}
 .app .main:active{transform:scale(.97)}
 .app+.app,.srv+.srv{margin-top:2px}
 .tile{position:relative;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;overflow:hidden;color:#fff;font-weight:800;font-size:19px;flex:none;background:linear-gradient(145deg,hsl(var(--h) 85% 66%),hsl(calc(var(--h) + 40) 80% 52%));box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 8px 14px -6px hsl(var(--h) 80% 40%/.6)}
@@ -162,12 +165,12 @@ const ic=n=>`<svg class="i" viewBox="0 0 24 24"><path d="${P[n]}"/></svg>`;
 const fb=b=>{b=+b||0;const u=['B','KB','MB','GB','TB'];let i=0;while(b>=1024&&i<4){b/=1024;i++}return(i>1?b.toFixed(2):Math.round(b))+' '+u[i]};
 const fd=t=>new Date(t*1000).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
 const go=p=>{const h='#/'+p;if(location.hash===h)route();else location.hash=h};
-const S={data:null,at:0,pref:{net:ls.get('vip_net')||'',srv:ls.get('vip_srv')||''}};
+const S={data:null,at:0,happ:{},pref:{net:ls.get('vip_net')||'',srv:ls.get('vip_srv')||''}};
 let tmr=0;
 function toast(m){tt.textContent=m;tt.classList.add('show');clearTimeout(tmr);tmr=setTimeout(()=>tt.classList.remove('show'),2400)}
 
 /* ---------- API ---------- */
-const demo=async(a,b)=>{await new Promise(r=>setTimeout(r,300));const n=Date.now()/1000|0;return{ok:true,token:'demo',uuid:b.uuid||'3f9a21c4-7b1e-4c2d-9a55-0e8d6f1b2a77',
+const demo=async(a,b)=>{await new Promise(r=>setTimeout(r,300));if(a==='happ')return{ok:true,link:'happ://crypt5/DEMO'+(b.net||'')};const n=Date.now()/1000|0;return{ok:true,token:'demo',uuid:b.uuid||'3f9a21c4-7b1e-4c2d-9a55-0e8d6f1b2a77',
 member:{status:'active',days:30,created:n-12*86400,expires:n+18*86400},bandwidth:{unlimited:false,quota:107374182400,up:6.2e9,down:41.8e9},subUrls:{'':'https://example.com/?e=demo','smart':'https://example.com/?e=smart','cellcard':'https://example.com/?e=cell','metfone':'https://example.com/?e=metfone'},
 networks:[{id:'smart',name:'Smart'},{id:'cellcard',name:'Cellcard'},{id:'metfone',name:'Metfone'}],
 servers:[{id:'s1',name:'Cambodia',flag:'https://flagcdn.com/w80/kh.png',ping:20,quality:'Excellent',allNets:false,networkIds:['smart','cellcard']},{id:'s2',name:'Singapore',flag:'https://flagcdn.com/w80/sg.png',ping:34,quality:'Excellent',allNets:true,networkIds:[]},{id:'s3',name:'United States',flag:'https://flagcdn.com/w80/us.png',ping:218,quality:'Fair',allNets:false,networkIds:['metfone']}],
@@ -188,13 +191,18 @@ const vis=d=>(d.servers||[]).filter(s=>!S.pref.net||s.allNets||(s.networkIds||[]
 function fixPref(d){const p=S.pref;if(!nets(d).some(n=>n.id===p.net))p.net=nets(d)[0]?.id||'';const l=vis(d);if(!l.some(s=>s.id===p.srv))p.srv=l[0]?.id||'';ls.set('vip_net',p.net);ls.set('vip_srv',p.srv)}
 const subFor=d=>{const m=d.subUrls||{};return m[S.pref.net]||m['']||''};
 const plat=()=>/iPhone|iPad|iPod/i.test(navigator.userAgent)?'ios':/Android/i.test(navigator.userAgent)?'android':'pc';
-const importLink=(a,raw)=>{const s=a.scheme||'';if(!raw||!/^[a-z][a-z0-9+.\-]*:\/\//i.test(s)||/^(javascript|data|vbscript|file):/i.test(s))return'';
- return s.split('{url}').join(encodeURIComponent(raw)).split('{raw}').join(raw).split('{name}').join(encodeURIComponent(C.NAME||'VIP'))};
+const importLink=(a,raw,nm)=>{const s=a.scheme||'';if(!raw||!/^[a-z][a-z0-9+.\-]*:\/\//i.test(s)||/^(javascript|data|vbscript|file):/i.test(s))return'';
+ const v2=/^v2box:/i.test(s),u=encodeURIComponent(v2?raw+'#'+nm:raw);   /* V2Box: name also goes in the #title of the URL */
+ let l=s.split('{url}').join(u).split('{raw}').join(raw).split('{name}').join(encodeURIComponent(nm));
+ if(v2&&!/[?&]lock(ed)?=/i.test(l))l+=(l.includes('?')?'&':'?')+'lock=true';   /* V2Box: locked import */
+ return l};
+const isHapp=a=>/^happ:/i.test(a.scheme||'');
+const netName=d=>(nets(d).find(n=>n.id===S.pref.net)||{}).name||'';
 const hue=n=>{let h=0;for(const c of String(n))h=(h*31+c.charCodeAt(0))%360;return h};
 const tileOf=a=>{const i=(a.icon||'').trim(),emo=i&&!/^https?:/i.test(i)&&!/^fa[-\s]/i.test(i)&&i.length<=4;
  return`<span class="tile" style="--h:${hue(a.name)}">${emo?esc(i):esc((a.name||'?')[0].toUpperCase())}${/^https?:\/\//i.test(i)?`<img src="${esc(i)}" alt="" loading="lazy" onerror="this.remove()">`:''}</span>`};
 async function copy(t,btn,label){try{await navigator.clipboard.writeText(t)}catch(e){const x=document.createElement('textarea');x.value=t;x.style.cssText='position:fixed;opacity:0';document.body.appendChild(x);x.select();try{document.execCommand('copy')}catch(_){}x.remove()}
- toast('Copied to clipboard');if(!btn)return;const o=btn.innerHTML;btn.classList.add('ok');btn.innerHTML=ic('check')+'Copied';setTimeout(()=>{btn.classList.remove('ok');btn.innerHTML=o},1800)}
+ toast('Copied to clipboard');if(!btn)return;const o=btn.innerHTML;btn.classList.add('ok');btn.innerHTML=ic('check')+(btn.classList.contains('ic')?'':'Copied');setTimeout(()=>{btn.classList.remove('ok');btn.innerHTML=o},1800)}
 const top=()=>`<div class="top"><div class="brand"><span class="ib glass" style="width:40px;height:40px;color:var(--acc)">${ic('crown')}</span>${esc(C.NAME||'VIP')}</div><button class="ib glass" data-act="logout" aria-label="Log out">${ic('out')}</button></div>`;
 
 /* login lockout (kept in this browser; the server also limits per IP) */
@@ -239,26 +247,36 @@ function dashHTML(d){
 }
 const netsHTML=d=>nets(d).map(n=>`<button class="chip ${n.id===S.pref.net?'on':''}" data-act="net" data-id="${esc(n.id)}">${esc(n.name)}</button>`).join('')||'<small style="padding:8px 14px;color:var(--mut)">No networks</small>';
 const srvHTML=d=>{const q={Excellent:'#2fb67c',Good:'#7bc043',Fair:'#f0a43a'};return vis(d).map(s=>`<button class="srv ${s.id===S.pref.srv?'on':''}" data-act="srv" data-id="${esc(s.id)}"><img class="flag" src="${esc(s.flag)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'"><span class="nm">${esc(s.name)}<small><i class="dot" style="background:${q[s.quality]||'#aaa'}"></i>${esc(s.quality)}</small></span><span class="ms">${+s.ping||'–'} ms</span><span class="tick">${ic('check')}</span></button>`).join('')||'<p class="note" style="padding:10px 12px;margin:0">No servers for this network.</p>'};
-function subHTML(d){const raw=subFor(d),nm=(nets(d).find(n=>n.id===S.pref.net)||{}).name||'';
- return raw?`<div class="uu" style="margin-top:0"><code>${esc(raw)}</code></div><button class="btn" data-act="copysub" style="margin-top:12px">${ic('copy')}Copy subscription URL</button><p class="note">${nm?esc(nm)+' network. ':''}Paste it into your VPN app, or tap an app below to import it automatically.</p>`
- :`<p class="note" style="margin:0">The subscription link is not enabled on the server yet. In Admin › Website API tick “Send the subscription link” and save.</p>`}
-function appsHTML(d){const raw=subFor(d),p=plat(),L=(d.apps||[]).slice().sort((a,b)=>!!b[p]-!!a[p]);
- return L.map(a=>{const l=importLink(a,raw),dl=a[p]||a.ios||a.android||a.pc;
-  const body=`${tileOf(a)}<span class="nm">${esc(a.name)}<small>${esc(a.sub)}</small></span>${l?`<span class="sm p">${ic('bolt')}Import</span>`:''}`;
-  return`<div class="app">${l?`<a class="main" href="${esc(l)}" data-imp="${esc(a.name)}">${body}</a>`:`<div class="main">${body}</div>`}${dl?`<a class="sm" href="${esc(dl)}" target="_blank" rel="noopener" aria-label="Download ${esc(a.name)}">${ic('dl')}Get</a>`:''}</div>`}).join('')||'<p class="note" style="padding:10px 12px;margin:0">No apps listed.</p>'}
+function appsHTML(d){const p=plat(),L=(d.apps||[]).slice().sort((a,b)=>!!b[p]-!!a[p]);
+ return L.map(a=>{const dl=a[p]||a.ios||a.android||a.pc,id=esc(a.id);
+  return`<div class="app"><button class="main" data-act="import" data-id="${id}">${tileOf(a)}<span class="nm">${esc(a.name)}<small>${esc(a.sub)}</small></span></button>
+  <button class="sm ic" data-act="copyapp" data-id="${id}" title="Copy subscription URL" aria-label="Copy ${esc(a.name)} subscription URL">${ic('copy')}</button>${dl?`<a class="sm ic" href="${esc(dl)}" target="_blank" rel="noopener" title="Get ${esc(a.name)}" aria-label="Download ${esc(a.name)}">${ic('dl')}</a>`:''}</div>`}).join('')||'<p class="note" style="padding:10px 12px;margin:0">No apps listed.</p>'}
 function serversHTML(d){
  return`${top()}<div><p class="eyebrow">Connection preferences</p><h1>Pick your<br>route</h1></div>
  <div class="sec"><span>Network</span></div><div class="chips glass" id="nets">${netsHTML(d)}</div>
  <div class="sec"><span>Servers</span><small id="cnt">${vis(d).length} available</small></div><div class="list glass" id="sv">${srvHTML(d)}</div>
- <div class="sec"><span>Subscription</span><small>changes with network</small></div><div class="card glass" id="sb">${subHTML(d)}</div>
- <div class="sec"><span>Supported apps</span><small>tap to import</small></div><div class="list glass" id="ap">${appsHTML(d)}</div>`;
+ <div class="sec"><span>Supported apps</span><small>tap to import</small></div><div class="list glass" id="ap">${appsHTML(d)}</div>
+ <p class="note">Tap an app to import your subscription automatically, or tap the copy button to copy its subscription URL.</p>`;
 }
-function paint(d,ids){const m={nets:['nets',netsHTML],sv:['sv',srvHTML],sb:['sb',subHTML],ap:['ap',appsHTML]};ids.forEach(k=>{const el=document.getElementById(m[k][0]);if(el)el.innerHTML=m[k][1](d)});const c=document.getElementById('cnt');if(c)c.textContent=vis(d).length+' available'}
+function paint(d,ids){const m={nets:['nets',netsHTML],sv:['sv',srvHTML],ap:['ap',appsHTML]};ids.forEach(k=>{const el=document.getElementById(m[k][0]);if(el)el.innerHTML=m[k][1](d)});const c=document.getElementById('cnt');if(c)c.textContent=vis(d).length+' available'}
+
+/* ---------- subscription: encrypted URL copy + import (same as the PHP site) ---------- */
+async function happLink(){const n=S.pref.net;if(S.happ[n])return S.happ[n];
+ const j=await api('happ',{token:ls.get('vip_token'),net:n}),l=String(j.link||'');if(!/^happ:\/\//i.test(l))throw new Error('Could not create the encrypted link, try again');S.happ[n]=l;return l}
+const prefetch=d=>{if((d.apps||[]).some(isHapp)&&subFor(d))happLink().catch(()=>{})};   /* ready before the tap, so the app opens instantly */
+async function linkFor(a,d){if(isHapp(a))return happLink();const r=subFor(d);if(!r)throw new Error('Subscription link is not enabled on the server');return r}
+async function copyApp(a,btn){try{copy(await linkFor(a,S.data),btn)}catch(e){toast(e.message)}}
+async function importApp(a){const d=S.data;let l;
+ try{l=await linkFor(a,d)}catch(e){return toast(e.message)}
+ if(isHapp(a)){copy(l);location.href=l;return}
+ const k=importLink(a,l,(netName(d)||'AnajakVPN VIP').toUpperCase());if(!k)return toast('This app has no import link');
+ toast('Opening '+a.name+'…');const t=setTimeout(()=>{if(!document.hidden)toast('App didn’t open? Install it with “Get”, then use the copy button.')},1800);
+ document.addEventListener('visibilitychange',()=>clearTimeout(t),{once:true});location.href=k}
 
 /* ---------- router ---------- */
 let rid=0;
 const skeleton=()=>`<section class="page">${top()}<div class="sk" style="margin-top:90px"></div><div class="sk"></div><div class="sk" style="height:110px"></div></section>`;
-function show(pg,d,still){view.innerHTML=`<section class="page stg${still?' still':''}">${pg==='servers'?serversHTML(d):dashHTML(d)}</section>`}
+function show(pg,d,still){if(pg==='servers')prefetch(d);view.innerHTML=`<section class="page stg${still?' still':''}">${pg==='servers'?serversHTML(d):dashHTML(d)}</section>`}
 function fail(e){view.innerHTML=`<section class="page"><div class="card glass center" style="margin-top:120px"><h1 style="font-size:26px">Something went wrong</h1><p>${esc(e.message)}${/domain/i.test(e.message)?'<br><small>Add this website’s domain in Admin › Website API.</small>':''}</p><button class="btn" data-act="retry">Try again</button><button class="sm" data-act="logout" style="margin-top:12px">Log out</button></div></section>`}
 async function route(){
  const id=++rid;let pg=location.hash.replace(/^#\/?/,'').replace('.html','');if(pg==='apps')pg='servers';
@@ -277,16 +295,14 @@ function expire(e){ls.del('vip_token');S.data=null;try{sessionStorage.setItem('v
 
 /* ---------- events (one delegated listener) ---------- */
 view.addEventListener('click',e=>{
- const imp=e.target.closest('a[data-imp]');
- if(imp){toast('Opening '+imp.dataset.imp+'…');const t=setTimeout(()=>{if(!document.hidden)toast('App didn’t open? Install it with “Get”, then use Copy URL.')},1800);
-  document.addEventListener('visibilitychange',()=>clearTimeout(t),{once:true});return}
  const t=e.target.closest('[data-act]');if(!t)return;const d=S.data,a=t.dataset.act;
  if(a==='logout'){ls.del('vip_token');S.data=null;go('login')}
  else if(a==='go')go(t.dataset.to);
  else if(a==='retry')route();
  else if(a==='copyuuid'&&d)copy(d.uuid,t);
- else if(a==='copysub'&&d){const r=subFor(d);if(r)copy(r,t)}
- else if(a==='net'&&d){S.pref.net=t.dataset.id;S.pref.srv='';fixPref(d);paint(d,['nets','sv','sb','ap'])}
+ else if(a==='copyapp'&&d){const x=(d.apps||[]).find(z=>z.id===t.dataset.id);if(x)copyApp(x,t)}
+ else if(a==='import'&&d){const x=(d.apps||[]).find(z=>z.id===t.dataset.id);if(x)importApp(x)}
+ else if(a==='net'&&d){S.pref.net=t.dataset.id;S.pref.srv='';fixPref(d);paint(d,['nets','sv','ap']);prefetch(d)}
  else if(a==='srv'&&d){S.pref.srv=t.dataset.id;ls.set('vip_srv',S.pref.srv);view.querySelectorAll('.srv').forEach(x=>x.classList.toggle('on',x===t))}
 });
 addEventListener('hashchange',route);route();
