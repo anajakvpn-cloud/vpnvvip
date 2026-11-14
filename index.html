@@ -1,62 +1,148 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#a98af0"><title>AnajakVIP</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap">
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#e9e3ff">
+<title>AnajakVIP</title>
 <style>
-:root{--ink:#2b2257;--mut:#8b85ad;--p1:#7a4be0;--p2:#a67ff6;--bg:#ece7fb;--card:rgba(255,255,255,.8);--ok:#2fb67c;--bad:#e5586e;--warn:#f0a43a}
-@media(prefers-color-scheme:dark){:root{--ink:#f1edff;--mut:#a69fcc;--bg:#171230;--card:rgba(48,40,92,.72)}}
+:root{--ink:#1c1b3a;--mut:#6d6a93;--acc:#6f4cf5;--acc2:#a07dff;--ok:#1fb67a;--bad:#e5486a;--warn:#f0a43a;
+--g1:rgba(255,255,255,.66);--g2:rgba(255,255,255,.28);--gl:rgba(255,255,255,.9);--gd:rgba(255,255,255,.12);--sh:rgba(70,40,170,.30);--in:rgba(255,255,255,.55);
+--bg1:#ebe5ff;--bg2:#ffe4f2;--bg3:#d8edff;--b1:#b79bff;--b2:#ff9fcf;--b3:#8fd0ff;--ease:cubic-bezier(.22,1,.36,1);--spring:cubic-bezier(.34,1.56,.64,1)}
+@media(prefers-color-scheme:dark){:root{--ink:#f5f2ff;--mut:#aaa5d6;--g1:rgba(78,66,150,.50);--g2:rgba(40,34,92,.30);--gl:rgba(255,255,255,.34);--gd:rgba(255,255,255,.05);--sh:rgba(0,0,0,.55);--in:rgba(255,255,255,.10);
+--bg1:#14102e;--bg2:#271240;--bg3:#0d2247;--b1:#5b3fd6;--b2:#b4318a;--b3:#1b6fd1}}
 *{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
-html{background:var(--bg)}
-body{font:400 15px/1.45 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:linear-gradient(165deg,color-mix(in srgb,var(--bg) 70%,#fff),var(--bg) 55%,color-mix(in srgb,var(--bg) 85%,#b9a6ff));min-height:100dvh}
-#app{max-width:440px;margin:0 auto;min-height:100dvh;position:relative;overflow:hidden;padding:env(safe-area-inset-top) 0 calc(96px + env(safe-area-inset-bottom))}
-@media(min-width:520px){#app{margin:20px auto;min-height:calc(100dvh - 40px);border-radius:44px;box-shadow:0 40px 80px -30px rgba(90,60,200,.45)}}
-.hero{position:absolute;inset:0 0 auto;height:330px;background:radial-gradient(120% 90% at 20% 0,#c9b2ff,transparent 60%),linear-gradient(160deg,#a888f5,#8a5df0 55%,#b49bf8);border-radius:0 0 46px 46px;opacity:.95}
-.in{position:relative;padding:22px 20px}
-.top{display:flex;justify-content:space-between;align-items:center;color:#fff}
-.ib{width:42px;height:42px;border-radius:15px;border:0;background:rgba(255,255,255,.28);backdrop-filter:blur(8px);color:#fff;display:grid;place-items:center;cursor:pointer}
-.ib svg,.nav svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-h1{color:#fff;font-weight:800;font-size:40px;line-height:1.04;letter-spacing:-.03em;margin:26px 0 8px}
-.hi{color:rgba(255,255,255,.9);font-weight:600}
-.sec{display:flex;justify-content:space-between;align-items:center;margin:30px 2px 12px;font-weight:800;font-size:16px;color:var(--ink)}
-.sec small{font-weight:600;color:var(--mut)}
-.card{background:var(--card);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:28px;padding:18px;box-shadow:0 16px 34px -14px rgba(110,80,210,.4),inset 0 1px 0 rgba(255,255,255,.7)}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.tile{text-align:left}.tile b{display:block;font-size:15px;margin-top:10px}.tile span{font-size:12px;color:var(--mut)}
-.ring{position:relative;width:86px;height:86px}.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
-.ring circle{fill:none;stroke-width:5;stroke-linecap:round}.ring .t{stroke:rgba(150,120,230,.2)}
-.ring i{position:absolute;inset:15px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 30% 25%,#fff,#e5dafd 60%,#c8b3fa);box-shadow:0 8px 16px -6px rgba(122,75,224,.55),inset 0 -3px 6px rgba(122,75,224,.18);color:var(--p1)}
-.ring i svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.badge{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:12px;padding:4px 10px;border-radius:99px;background:rgba(47,182,124,.15);color:var(--ok)}
-.badge.x{background:rgba(229,88,110,.15);color:var(--bad)}.badge:before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
-.uuid{display:flex;align-items:center;gap:10px;margin-top:10px}
-.uuid code{flex:1;font:600 12.5px ui-monospace,Menlo,monospace;word-break:break-all;background:rgba(150,120,230,.12);padding:10px 12px;border-radius:14px}
-.bar{height:10px;border-radius:9px;background:rgba(150,120,230,.2);overflow:hidden;margin:14px 0 8px}.bar u{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--p2),var(--p1));transition:width .8s}
-.row{display:flex;justify-content:space-between;font-size:13px;color:var(--mut)}.row b{color:var(--ink)}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px}
-.chip{border:0;font:700 13px inherit;font-family:inherit;padding:9px 16px;border-radius:99px;background:rgba(150,120,230,.14);color:var(--ink);cursor:pointer}
-.chip.on,.btn{background:linear-gradient(135deg,var(--p2),var(--p1));color:#fff;box-shadow:0 10px 20px -8px rgba(122,75,224,.7)}
-.srv{display:flex;align-items:center;gap:12px;width:100%;border:2px solid transparent;font-family:inherit;color:inherit;text-align:left;background:rgba(255,255,255,.55);padding:11px 12px;border-radius:20px;margin-top:8px;cursor:pointer}
-.srv.on{border-color:var(--p2);background:rgba(166,127,246,.14)}.srv img{width:32px;height:32px;border-radius:50%;object-fit:cover;background:#ddd}
-.srv div{flex:1;font-weight:700}.srv small{display:block;font-weight:500;color:var(--mut)}.srv em{font-style:normal;font-weight:800;font-size:13px}
-.dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:5px}
-.app{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid rgba(150,120,230,.16)}.app:first-of-type{border-top:0}
-.app>i{width:46px;height:46px;border-radius:16px;display:grid;place-items:center;font:800 18px inherit;font-family:inherit;color:#fff;background:linear-gradient(135deg,var(--p2),var(--p1));font-style:normal}
-.app div{flex:1;min-width:0}.app b{display:block}.app small{color:var(--mut);font-size:12px}
-.sm{border:0;font:700 12.5px inherit;font-family:inherit;padding:9px 14px;border-radius:99px;cursor:pointer;text-decoration:none;display:inline-block}
-.sm.g{background:rgba(150,120,230,.16);color:var(--p1)}.sm.b{background:var(--p1);color:#fff}
-.btn{width:100%;border:0;border-radius:99px;padding:15px;font:800 16px inherit;font-family:inherit;cursor:pointer}
-.btn:disabled{opacity:.6}
-.login .in{padding-top:70px}.login .card{margin-top:34px}
-input{width:100%;border:2px solid rgba(150,120,230,.25);background:rgba(255,255,255,.7);color:#2b2257;border-radius:18px;padding:14px;font:600 14px ui-monospace,Menlo,monospace;margin:8px 0 12px;outline:0}input:focus{border-color:var(--p2)}
-label{font-weight:700;font-size:13px}.err{color:var(--bad);font-size:13px;min-height:20px;margin-top:10px;text-align:center}
-.nav{position:fixed;bottom:calc(14px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(412px,calc(100% - 28px));display:flex;justify-content:space-around;padding:12px;border-radius:30px;background:var(--card);backdrop-filter:blur(18px);box-shadow:0 20px 40px -14px rgba(110,80,210,.5)}
-.nav a{color:var(--mut);padding:6px 14px;border-radius:16px;display:grid;place-items:center}.nav a:hover,.nav a.on{color:var(--p1);background:rgba(150,120,230,.14)}
-.note{font-size:12px;color:var(--mut);margin-top:10px}
-:focus-visible{outline:3px solid var(--p2);outline-offset:2px}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
-.app[data-l]{cursor:pointer}.app[data-l]:active{opacity:.7}
-input:disabled{opacity:.55}
+html{background:var(--bg1);-webkit-text-size-adjust:100%}
+body{font:400 15px/1.45 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Inter','Segoe UI',Roboto,system-ui,sans-serif;color:var(--ink);min-height:100dvh;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+background:linear-gradient(160deg,var(--bg1),var(--bg2) 52%,var(--bg3)) fixed}
+/* ambient light: only transforms animate (GPU) */
+.bg{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.bg i{position:absolute;width:70vmax;height:70vmax;border-radius:50%;will-change:transform;opacity:.75}
+.bg i:nth-child(1){left:-25vmax;top:-22vmax;background:radial-gradient(circle,var(--b1),transparent 62%);animation:d1 26s ease-in-out infinite alternate}
+.bg i:nth-child(2){right:-28vmax;top:18vh;background:radial-gradient(circle,var(--b2),transparent 62%);animation:d2 32s ease-in-out infinite alternate;opacity:.55}
+.bg i:nth-child(3){left:-10vmax;bottom:-34vmax;background:radial-gradient(circle,var(--b3),transparent 62%);animation:d3 29s ease-in-out infinite alternate;opacity:.6}
+@keyframes d1{to{transform:translate3d(14vmax,10vmax,0) scale(1.1)}}
+@keyframes d2{to{transform:translate3d(-12vmax,-8vmax,0) scale(1.15)}}
+@keyframes d3{to{transform:translate3d(10vmax,-9vmax,0) scale(1.08)}}
+#app{position:relative;z-index:1;max-width:460px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 14px) 18px calc(118px + env(safe-area-inset-bottom))}
+/* Liquid Glass */
+.glass{position:relative;background:linear-gradient(145deg,var(--g1),var(--g2));-webkit-backdrop-filter:blur(22px) saturate(180%);backdrop-filter:blur(22px) saturate(180%);
+box-shadow:inset 0 1px 0 var(--gl),inset 0 -1px 0 var(--gd),0 18px 40px -18px var(--sh),0 2px 6px -2px rgba(40,20,120,.10)}
+.glass::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+background:linear-gradient(140deg,rgba(255,255,255,.95),rgba(255,255,255,.12) 28%,rgba(255,255,255,.04) 68%,rgba(255,255,255,.55));
+-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.8}
+.card{border-radius:30px;padding:20px}
+.page{animation:pin .55s var(--ease) both}
+.page.still,.page.still>*{animation:none!important}
+@keyframes pin{from{opacity:0;transform:translateY(14px) scale(.985)}}
+.stg>*{animation:rise .65s var(--ease) both}
+.stg>*:nth-child(2){animation-delay:.05s}.stg>*:nth-child(3){animation-delay:.1s}.stg>*:nth-child(4){animation-delay:.15s}.stg>*:nth-child(5){animation-delay:.2s}.stg>*:nth-child(6){animation-delay:.25s}.stg>*:nth-child(7){animation-delay:.3s}.stg>*:nth-child(8){animation-delay:.35s}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}}
+/* type */
+h1{font-weight:800;font-size:40px;line-height:1.02;letter-spacing:-.035em;margin:6px 0 4px}
+.eyebrow{font-weight:600;color:var(--mut);margin-top:22px}
+.sec{display:flex;justify-content:space-between;align-items:baseline;margin:26px 6px 10px;font-weight:700;font-size:17px;letter-spacing:-.01em}
+.sec small{font-weight:600;font-size:13px;color:var(--mut)}
+.note{font-size:12.5px;color:var(--mut);margin-top:12px;line-height:1.5}
+/* top bar */
+.top{display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.02em;font-size:16px}
+.ib{width:44px;height:44px;border-radius:50%;border:0;display:grid;place-items:center;color:var(--ink);cursor:pointer;transition:transform .35s var(--spring)}
+.ib:active{transform:scale(.88)}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+/* status */
+.heroc{display:flex;gap:18px;align-items:center}
+.ring{position:relative;width:104px;height:104px;flex:none}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:8;stroke-linecap:round}
+.ring .t{stroke:rgba(140,110,230,.18)}
+.ring .v{stroke-dasharray:var(--c);stroke-dashoffset:var(--to);animation:ringin 1.2s var(--ease) .15s both}
+@keyframes ringin{from{stroke-dashoffset:var(--c)}}
+.ring div{position:absolute;inset:0;display:grid;place-content:center;text-align:center;line-height:1}
+.ring b{font-size:30px;font-weight:800;letter-spacing:-.04em}.ring small{font-size:11px;font-weight:600;color:var(--mut);margin-top:3px}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:5px 11px;border-radius:99px;background:rgba(31,182,122,.16);color:var(--ok)}
+.badge::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.badge.x{background:rgba(229,72,106,.16);color:var(--bad)}
+.heroc h2{font-size:21px;letter-spacing:-.02em;margin:8px 0 2px}
+.heroc p{font-size:13px;color:var(--mut)}
+.bar{height:10px;border-radius:9px;background:rgba(140,110,230,.16);overflow:hidden;margin:14px 0 10px}
+.bar u{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--acc2),var(--acc));transform-origin:left;transform:scaleX(var(--p));animation:bar 1.1s var(--ease) .2s both}
+@keyframes bar{from{transform:scaleX(0)}}
+.row{display:flex;justify-content:space-between;gap:10px;font-size:13px;color:var(--mut)}.row b{color:var(--ink);font-weight:700}
+.big{font-size:30px;font-weight:800;letter-spacing:-.04em}.big small{font-size:14px;font-weight:600;color:var(--mut);letter-spacing:0}
+.cardhd{display:flex;justify-content:space-between;align-items:baseline;font-weight:700}.cardhd small{font-size:12.5px;color:var(--mut);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px}
+.stats div{background:rgba(255,255,255,.28);border-radius:16px;padding:10px 12px}.stats span{display:block;font-size:11.5px;color:var(--mut);font-weight:600}.stats b{font-size:14px}
+.uu{display:flex;align-items:center;gap:10px;margin-top:12px}
+code{font:600 12.5px/1.4 ui-monospace,'SF Mono',Menlo,Consolas,monospace;word-break:break-all;flex:1;background:rgba(255,255,255,.3);border-radius:14px;padding:11px 13px}
+/* buttons */
+.btn{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:52px;border:0;border-radius:99px;font:700 16px/1 inherit;color:#fff;cursor:pointer;overflow:hidden;
+background:linear-gradient(180deg,#9b78ff,#6a43f0);box-shadow:inset 0 1px 0 rgba(255,255,255,.6),inset 0 -2px 6px rgba(50,20,150,.35),0 14px 26px -10px rgba(111,76,245,.7);transition:transform .35s var(--spring),filter .2s}
+.btn::before{content:"";position:absolute;left:8%;right:8%;top:2px;height:46%;border-radius:99px;background:linear-gradient(180deg,rgba(255,255,255,.5),transparent);pointer-events:none}
+.btn:active{transform:scale(.96)}.btn:disabled{filter:grayscale(.5) opacity(.6);cursor:not-allowed}
+.btn.ok{background:linear-gradient(180deg,#43d49c,#16a36d)}
+.sm{display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 14px;border-radius:99px;border:0;font:700 13px/1 inherit;color:var(--ink);cursor:pointer;text-decoration:none;white-space:nowrap;background:rgba(255,255,255,.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.7);transition:transform .3s var(--spring),background .2s}
+.sm:active{transform:scale(.92)}.sm.p{background:linear-gradient(180deg,#9b78ff,#6a43f0);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 8px 16px -8px rgba(111,76,245,.8)}.sm.ok{background:var(--ok);color:#fff}
+.sm svg.i{width:16px;height:16px}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+/* chips */
+.chips{display:flex;gap:8px;overflow-x:auto;padding:8px;border-radius:99px;scrollbar-width:none;scroll-snap-type:x proximity}.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;scroll-snap-align:center;border:0;border-radius:99px;padding:11px 20px;font:700 14px/1 inherit;color:var(--ink);background:transparent;cursor:pointer;transition:background .35s var(--ease),color .25s,transform .35s var(--spring),box-shadow .35s}
+.chip:active{transform:scale(.94)}
+.chip.on{color:#fff;background:linear-gradient(180deg,#9b78ff,#6a43f0);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 8px 16px -8px rgba(111,76,245,.8)}
+/* lists */
+.list{padding:8px;border-radius:30px}
+.srv,.app{display:flex;align-items:center;gap:13px;width:100%;padding:11px 12px;border:0;border-radius:22px;background:transparent;color:inherit;text-align:left;font:inherit;cursor:pointer;transition:background .3s,transform .3s var(--spring)}
+.srv:active{transform:scale(.97)}.srv.on{background:rgba(255,255,255,.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.7)}
+.flag{width:42px;height:42px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px rgba(255,255,255,.7),0 6px 12px -4px rgba(60,30,150,.4);background:rgba(255,255,255,.4);flex:none}
+.srv .nm,.app .nm{flex:1;min-width:0;font-weight:700;font-size:15px;line-height:1.25}.nm small{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--mut)}
+.dot{width:7px;height:7px;border-radius:50%}
+.ms{font-size:12.5px;font-weight:700;color:var(--mut);font-variant-numeric:tabular-nums}
+.tick{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;border:2px solid rgba(140,110,230,.3);color:#fff;transition:all .35s var(--spring);flex:none}
+.tick svg{width:14px;height:14px;stroke-width:3;transform:scale(0);transition:transform .35s var(--spring)}
+.srv.on .tick{background:var(--acc);border-color:var(--acc)}.srv.on .tick svg{transform:scale(1)}
+.app{cursor:default}
+.app .main{display:flex;align-items:center;gap:13px;flex:1;min-width:0;color:inherit;text-decoration:none;border-radius:18px;transition:transform .3s var(--spring)}
+.app .main:active{transform:scale(.97)}
+.app+.app,.srv+.srv{margin-top:2px}
+.tile{position:relative;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;overflow:hidden;color:#fff;font-weight:800;font-size:19px;flex:none;background:linear-gradient(145deg,hsl(var(--h) 85% 66%),hsl(calc(var(--h) + 40) 80% 52%));box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 8px 14px -6px hsl(var(--h) 80% 40%/.6)}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff}
+.go{color:var(--acc)}
+/* floating glass tab bar */
+#tabs{position:fixed;z-index:20;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));width:min(300px,calc(100% - 44px));height:68px;padding:6px;border-radius:99px;display:flex;transform:translateX(-50%);transition:transform .5s var(--ease),opacity .4s}
+#tabs.off{transform:translate(-50%,140%);opacity:0;pointer-events:none}
+#tabs .thumb{position:absolute;top:6px;bottom:6px;left:6px;width:calc(50% - 6px);border-radius:99px;background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,.45));box-shadow:inset 0 1px 0 #fff,0 6px 16px -6px var(--sh);transition:transform .55s var(--spring)}
+@media(prefers-color-scheme:dark){#tabs .thumb{background:linear-gradient(180deg,rgba(255,255,255,.3),rgba(255,255,255,.12))}}
+#tabs.s1 .thumb{transform:translateX(100%)}
+#tabs a{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:var(--mut);text-decoration:none;font-size:11px;font-weight:700;border-radius:99px;transition:color .3s}
+#tabs a.on{color:var(--acc)}#tabs a svg.i{width:22px;height:22px}
+/* toast */
+#toast{position:fixed;z-index:50;left:50%;top:calc(12px + env(safe-area-inset-top));max-width:calc(100% - 36px);padding:13px 20px;border-radius:99px;font-weight:700;font-size:13.5px;transform:translate(-50%,-160%);transition:transform .55s var(--spring);text-align:center}
+#toast.show{transform:translate(-50%,0)}
+/* login */
+.login{min-height:calc(100dvh - 140px);display:flex;flex-direction:column;justify-content:center}
+.logo{width:76px;height:76px;border-radius:26px;display:grid;place-items:center;color:var(--acc);margin-bottom:6px}.logo svg.i{width:34px;height:34px}
+label{display:block;font-size:12.5px;font-weight:700;color:var(--mut);margin:0 4px 8px}
+.field{display:flex;gap:8px;margin-bottom:14px}
+input{flex:1;min-width:0;height:52px;border-radius:18px;border:0;padding:0 16px;font:600 14px/1 ui-monospace,'SF Mono',Menlo,monospace;color:var(--ink);background:rgba(255,255,255,.4);box-shadow:inset 0 2px 5px rgba(60,30,150,.12),inset 0 0 0 1px rgba(255,255,255,.5);outline:0;transition:box-shadow .3s}
+input:focus{box-shadow:inset 0 2px 5px rgba(60,30,150,.12),0 0 0 3px rgba(111,76,245,.45)}
+input::placeholder{color:var(--mut);opacity:.7}
+.err{min-height:20px;margin-top:12px;font-size:13px;font-weight:600;color:var(--bad);text-align:center}
+.shake{animation:shake .45s}
+@keyframes shake{20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+/* skeleton + error */
+.sk{position:relative;overflow:hidden;border-radius:30px;height:150px;margin-top:14px;background:rgba(255,255,255,.3)}
+.sk::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.6) 50%,transparent 70%);transform:translateX(-100%);animation:sh 1.3s infinite}
+@keyframes sh{to{transform:translateX(100%)}}
+.center{text-align:center}.center p{margin:8px 0 18px;color:var(--mut)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}}
 </style></head>
-<body><div id="app"></div>
+<body>
+<div class="bg"><i></i><i></i><i></i></div>
+<div id="app"><div id="view"></div></div>
+<nav id="tabs" class="glass off" aria-label="Pages"><i class="thumb"></i>
+<a href="#/dashboard" data-p="dashboard" aria-label="Home"><svg class="i" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v10a1 1 0 01-1 1h-5v-7H9v7H4a1 1 0 01-1-1z"/></svg>Home</a>
+<a href="#/servers" data-p="servers" aria-label="Servers"><svg class="i" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zM2 12h20M12 2c3 3 4 6.5 4 10s-1 7-4 10c-3-3-4-6.5-4-10s1-7 4-10z"/></svg>Servers</a></nav>
+<div id="toast" class="glass" role="status" aria-live="polite"></div>
 <script>
 /* ===== SETTINGS =====
    API  = address of your AnajakVIP site (where index.php lives). Copy it from Admin > Website API.
@@ -66,120 +152,143 @@ window.CFG={API:"https://anajakvip.shop/",NAME:"AnajakVIP"};
 </script>
 <script>
 (()=>{
-const C=window.CFG||{},A=document.getElementById('app');let PG='';
+const C=window.CFG||{},view=document.getElementById('view'),tabs=document.getElementById('tabs'),tt=document.getElementById('toast');
 const D=/[?&]demo/.test(location.search);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const ls={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},del:k=>{try{localStorage.removeItem(k)}catch(e){}}};
 const UU=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-const P={home:'M3 11l9-8 9 8v10a1 1 0 01-1 1h-5v-7H9v7H4a1 1 0 01-1-1z',globe:'M12 2a10 10 0 100 20 10 10 0 000-20zM2 12h20M12 2c3 3 4 6.500 4 10s-1 7-4 10c-3-3-4-6.500-4-10s1-7 4-10z',grid:'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z',out:'M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9',crown:'M3 7l4 4 5-7 5 7 4-4-2 12H5z',pulse:'M3 12h4l3-8 4 16 3-8h4'};
-const ic=n=>`<svg viewBox="0 0 24 24"><path d="${P[n]}"/></svg>`;
+const P={crown:'M3 7l4 4 5-7 5 7 4-4-2 12H5z',out:'M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9',copy:'M9 9h10a1 1 0 011 1v10a1 1 0 01-1 1H9a1 1 0 01-1-1V10a1 1 0 011-1zM5 15H4a1 1 0 01-1-1V4a1 1 0 011-1h10a1 1 0 011 1v1',check:'M5 12.5l4.5 4.5L19 7.5',dl:'M12 4v11M7 11l5 5 5-5M5 20h14',bolt:'M13 2L4 14h7l-1 8 9-12h-7z',paste:'M9 4h6v3H9zM7 5H6a1 1 0 00-1 1v14a1 1 0 001 1h12a1 1 0 001-1V6a1 1 0 00-1-1h-1',arrow:'M5 12h14M13 6l6 6-6 6'};
+const ic=n=>`<svg class="i" viewBox="0 0 24 24"><path d="${P[n]}"/></svg>`;
 const fb=b=>{b=+b||0;const u=['B','KB','MB','GB','TB'];let i=0;while(b>=1024&&i<4){b/=1024;i++}return(i>1?b.toFixed(2):Math.round(b))+' '+u[i]};
 const fd=t=>new Date(t*1000).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
-const go=h=>{const r='#/'+h.replace('.html','');if(location.hash===r)route();else location.hash=r};
-const pref={net:ls.get('vip_net')||'',srv:ls.get('vip_srv')||''};
+const go=p=>{const h='#/'+p;if(location.hash===h)route();else location.hash=h};
+const S={data:null,at:0,pref:{net:ls.get('vip_net')||'',srv:ls.get('vip_srv')||''}};
+let tmr=0;
+function toast(m){tt.textContent=m;tt.classList.add('show');clearTimeout(tmr);tmr=setTimeout(()=>tt.classList.remove('show'),2400)}
 
 /* ---------- API ---------- */
 const demo=async(a,b)=>{await new Promise(r=>setTimeout(r,300));const n=Date.now()/1000|0;return{ok:true,token:'demo',uuid:b.uuid||'3f9a21c4-7b1e-4c2d-9a55-0e8d6f1b2a77',
-member:{status:'active',days:30,created:n-12*86400,expires:n+18*86400},bandwidth:{unlimited:false,quota:107374182400,up:6.2e9,down:41.8e9},subUrls:{'':'https://example.com/?e=demo'},
+member:{status:'active',days:30,created:n-12*86400,expires:n+18*86400},bandwidth:{unlimited:false,quota:107374182400,up:6.2e9,down:41.8e9},subUrls:{'':'https://example.com/?e=demo','smart':'https://example.com/?e=smart','cellcard':'https://example.com/?e=cell','metfone':'https://example.com/?e=metfone'},
 networks:[{id:'smart',name:'Smart'},{id:'cellcard',name:'Cellcard'},{id:'metfone',name:'Metfone'}],
 servers:[{id:'s1',name:'Cambodia',flag:'https://flagcdn.com/w80/kh.png',ping:20,quality:'Excellent',allNets:false,networkIds:['smart','cellcard']},{id:'s2',name:'Singapore',flag:'https://flagcdn.com/w80/sg.png',ping:34,quality:'Excellent',allNets:true,networkIds:[]},{id:'s3',name:'United States',flag:'https://flagcdn.com/w80/us.png',ping:218,quality:'Fair',allNets:false,networkIds:['metfone']}],
-apps:[{id:'happ',name:'Happ',sub:'Android · iOS · Desktop',scheme:'happ://add/{raw}',ios:'#',android:'#',pc:'#'},{id:'v2box',name:'V2Box',sub:'iOS · V2Ray client',scheme:'v2box://install-sub?url={url}&name={name}',ios:'#',android:'',pc:''},{id:'v2rayng',name:'v2rayNG',sub:'Android · V2Ray client',scheme:'v2rayng://install-sub?url={url}&name={name}',ios:'',android:'#',pc:''}]}};
+apps:[{id:'happ',name:'Happ',sub:'Android · iOS · Desktop',icon:'',scheme:'happ://add/{raw}',ios:'#',android:'#',pc:'#'},{id:'v2box',name:'V2Box',sub:'iOS · V2Ray client',icon:'',scheme:'v2box://install-sub?url={url}&name={name}',ios:'#',android:'',pc:''},{id:'v2rayng',name:'v2rayNG',sub:'Android · V2Ray client',icon:'',scheme:'v2rayng://install-sub?url={url}&name={name}',ios:'',android:'#',pc:''}]}};
 async function api(a,body){
  if(D)return demo(a,body||{});
- let r;try{r=await fetch(C.API+(C.API.includes('?')?'&':'?')+'api=vip_'+a,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body||{})})}catch(e){throw new Error('Cannot reach the server')}
+ const ac=new AbortController(),to=setTimeout(()=>ac.abort(),15000);let r;
+ try{r=await fetch(C.API+(C.API.includes('?')?'&':'?')+'api=vip_'+a,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body||{}),signal:ac.signal})}
+ catch(e){throw new Error('Cannot reach the server')}finally{clearTimeout(to)}
  const j=await r.json().catch(()=>({ok:false,error:'Bad server response'}));
  if(!j.ok){const e=new Error(j.error||'Request failed');e.code=r.status;throw e}return j;
 }
+async function fetchMe(){const j=await api('me',{token:ls.get('vip_token')});S.data=j;S.at=Date.now();return j}
 
-/* ---------- shared layout ---------- */
-const nav=a=>`<nav class="nav" aria-label="Pages">${[['dashboard','home','Home'],['servers','globe','Servers'],['apps','grid','Apps']].map(([p,i,l])=>`<a href="#/${p}" class="${p===a?'on':''}" aria-label="${l}">${ic(i)}</a>`).join('')}</nav>`;
-function shell(d,body){
- A.innerHTML=`<div class="hero"></div><main class="in"><div class="top"><span class="ib" aria-hidden="true">${ic('crown')}</span><button class="ib" id="lo" aria-label="Log out">${ic('out')}</button></div>${body}</main>${nav(PG)}`;
- document.getElementById('lo').onclick=()=>{ls.del('vip_token');go('login.html')};
-}
-async function load(){
- const t=ls.get('vip_token');if(!t&&!D)return go('login.html');
- try{return await api('me',{token:t})}catch(e){ls.del('vip_token');try{sessionStorage.setItem('vip_msg',e.message)}catch(x){}go('login.html')}
-}
-const ring=(p,icon)=>{const r=36,c=2*Math.PI*r;p=Math.max(0,Math.min(1,p));
- return`<div class="ring"><svg viewBox="0 0 86 86"><defs><linearGradient id="g${icon}" x1="0" x2="1"><stop offset="0" stop-color="#b793ff"/><stop offset="1" stop-color="#7a4be0"/></linearGradient></defs><circle class="t" cx="43" cy="43" r="36"/><circle cx="43" cy="43" r="36" stroke="url(#g${icon})" stroke-dasharray="${c}" stroke-dashoffset="${c*(1-p)}"/></svg><i>${ic(icon)}</i></div>`};
+/* ---------- helpers ---------- */
 const nets=d=>d.networks||[];
-const vis=d=>(d.servers||[]).filter(s=>!pref.net||s.allNets||(s.networkIds||[]).includes(pref.net));
-function fixPref(d){if(!nets(d).some(n=>n.id===pref.net))pref.net=nets(d)[0]?.id||'';const l=vis(d);if(!l.some(s=>s.id===pref.srv))pref.srv=l[0]?.id||''}
-const subFor=d=>{const m=d.subUrls||{};return m[pref.net]||m['']||''};
+const vis=d=>(d.servers||[]).filter(s=>!S.pref.net||s.allNets||(s.networkIds||[]).includes(S.pref.net));
+function fixPref(d){const p=S.pref;if(!nets(d).some(n=>n.id===p.net))p.net=nets(d)[0]?.id||'';const l=vis(d);if(!l.some(s=>s.id===p.srv))p.srv=l[0]?.id||'';ls.set('vip_net',p.net);ls.set('vip_srv',p.srv)}
+const subFor=d=>{const m=d.subUrls||{};return m[S.pref.net]||m['']||''};
 const plat=()=>/iPhone|iPad|iPod/i.test(navigator.userAgent)?'ios':/Android/i.test(navigator.userAgent)?'android':'pc';
+const importLink=(a,raw)=>{const s=a.scheme||'';if(!raw||!/^[a-z][a-z0-9+.\-]*:\/\//i.test(s)||/^(javascript|data|vbscript|file):/i.test(s))return'';
+ return s.split('{url}').join(encodeURIComponent(raw)).split('{raw}').join(raw).split('{name}').join(encodeURIComponent(C.NAME||'VIP'))};
+const hue=n=>{let h=0;for(const c of String(n))h=(h*31+c.charCodeAt(0))%360;return h};
+const tileOf=a=>{const i=(a.icon||'').trim(),emo=i&&!/^https?:/i.test(i)&&!/^fa[-\s]/i.test(i)&&i.length<=4;
+ return`<span class="tile" style="--h:${hue(a.name)}">${emo?esc(i):esc((a.name||'?')[0].toUpperCase())}${/^https?:\/\//i.test(i)?`<img src="${esc(i)}" alt="" loading="lazy" onerror="this.remove()">`:''}</span>`};
+async function copy(t,btn,label){try{await navigator.clipboard.writeText(t)}catch(e){const x=document.createElement('textarea');x.value=t;x.style.cssText='position:fixed;opacity:0';document.body.appendChild(x);x.select();try{document.execCommand('copy')}catch(_){}x.remove()}
+ toast('Copied to clipboard');if(!btn)return;const o=btn.innerHTML;btn.classList.add('ok');btn.innerHTML=ic('check')+'Copied';setTimeout(()=>{btn.classList.remove('ok');btn.innerHTML=o},1800)}
+const top=()=>`<div class="top"><div class="brand"><span class="ib glass" style="width:40px;height:40px;color:var(--acc)">${ic('crown')}</span>${esc(C.NAME||'VIP')}</div><button class="ib glass" data-act="logout" aria-label="Log out">${ic('out')}</button></div>`;
 
-const copy=async(t,btn)=>{try{await navigator.clipboard.writeText(t)}catch(e){const x=document.createElement('textarea');x.value=t;x.style.cssText='position:fixed;opacity:0';document.body.appendChild(x);x.select();try{document.execCommand('copy')}catch(_){}x.remove()}const o=btn.textContent;btn.textContent='Copied';setTimeout(()=>btn.textContent=o,1800)};
-/* login lockout: wrong UUID several times -> wait before trying again (kept in this browser; the server also limits per IP) */
+/* login lockout (kept in this browser; the server also limits per IP) */
 const lockLeft=()=>Math.max(0,Math.ceil((+(ls.get('vip_lock')||0)-Date.now())/1000));
 const mmss=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
 function addFail(code){const n=(+(ls.get('vip_fails')||0))+1;ls.set('vip_fails',n);const s=code===429?600:n>=6?600:n===5?180:n===4?60:n===3?30:0;if(s)ls.set('vip_lock',Date.now()+s*1000);return n}
 function clearFails(){ls.del('vip_fails');ls.del('vip_lock')}
-/* ---------- pages ---------- */
-const pages={
-login(){
+
+/* ---------- views ---------- */
+function renderLogin(){
  let msg='';try{msg=sessionStorage.getItem('vip_msg')||'';sessionStorage.removeItem('vip_msg')}catch(e){}
- A.innerHTML=`<div class="hero"></div><main class="login"><div class="in"><h1>Welcome<br>back!</h1><p class="hi">Sign in with your VIP UUID</p>
- <div class="card"><label for="u">UUID</label><input id="u" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" autocomplete="off" spellcheck="false">
- <button class="btn" id="go">Login</button><p class="err" id="er" role="alert">${esc(msg)}</p></div></div></main>`;
+ view.innerHTML=`<section class="page login stg"><div class="logo glass">${ic('crown')}</div><h1>Welcome<br>back</h1><p class="eyebrow" style="margin-top:6px">Sign in with your VIP UUID</p>
+ <div class="card glass" style="margin-top:22px"><label for="u">UUID</label><div class="field"><input id="u" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="sm" id="pa" aria-label="Paste" style="height:52px;width:52px;padding:0;justify-content:center">${ic('paste')}</button></div>
+ <button class="btn" id="go">Login</button><p class="err" id="er" role="alert">${esc(msg)}</p></div></section>`;
  const u=document.getElementById('u'),b=document.getElementById('go'),er=document.getElementById('er');let tm=0,locked=false;
+ const bad=m=>{er.textContent=m;er.classList.remove('shake');void er.offsetWidth;er.classList.add('shake')};
  const tick=()=>{clearTimeout(tm);const s=lockLeft();
   if(s>0){locked=true;u.disabled=b.disabled=true;b.textContent='Wait '+mmss(s);er.textContent='Too many failed attempts. Please wait to login again.';tm=setTimeout(tick,1000)}
   else if(locked){locked=false;u.disabled=b.disabled=false;b.textContent='Login';er.textContent='';u.focus()}};
  const run=async()=>{if(lockLeft()>0)return tick();const v=u.value.trim().toLowerCase();er.textContent='';
-  if(!UU.test(v)&&!D){er.textContent='Enter a valid UUID';return}
+  if(!UU.test(v)&&!D){bad('Enter a valid UUID');return}
   b.disabled=true;b.textContent='Checking…';
-  try{const j=await api('login',{uuid:v});clearFails();ls.set('vip_token',j.token);go('dashboard.html')}
+  try{const j=await api('login',{uuid:v});clearFails();ls.set('vip_token',j.token);S.data=j;S.at=Date.now();go('dashboard')}
   catch(e){b.disabled=false;b.textContent='Login';
-   if(e.code===400||e.code===404||e.code===429){const n=addFail(e.code);if(lockLeft()>0)return tick();er.textContent=e.message+(n<3?' ('+(3-n)+' '+(3-n===1?'try':'tries')+' left before a wait)':'')}
-   else er.textContent=e.message}};
- b.onclick=run;u.onkeydown=e=>{if(e.key==='Enter')run()};tick();
-},
-async dashboard(){
- const d=await load();if(!d)return;const m=d.member,b=d.bandwidth,now=Date.now()/1000,left=Math.max(0,Math.ceil((m.expires-now)/86400)),act=m.expires>now&&m.status==='active';
- const used=(b.up||0)+(b.down||0),unl=b.unlimited||!b.quota,pct=unl?0:used/b.quota;
- shell(d,`<p class="hi" style="margin-top:22px">Hello, ${esc(d.uuid.slice(0,8).toUpperCase())}</p><h1 style="margin-top:4px">Stay<br>connected!</h1>
- <div class="sec"><span>Your VIP</span></div>
- <div class="grid"><div class="card tile">${ring(m.days?left/m.days:0,'crown')}<b>Membership</b><span class="badge ${act?'':'x'}">${act?'Active':'Expired'}</span></div>
- <div class="card tile">${ring(pct,'pulse')}<b>Bandwidth</b><span>${unl?'Unlimited':Math.round(pct*100)+'% used'}</span></div></div>
- <div class="card" style="margin-top:14px"><div class="row"><span>Membership status</span><b>${act?left+' days left':'Expired'}</b></div><div class="bar"><u style="width:${m.days?Math.min(100,left/m.days*100):0}%"></u></div>
- <div class="row"><span>Started <b>${fd(m.created)}</b></span><span>Ends <b>${fd(m.expires)}</b></span></div></div>
- <div class="sec"><span>UUID</span></div><div class="card"><div class="row"><span>Your login ID</span></div><div class="uuid"><code>${esc(d.uuid)}</code><button class="sm g" id="cp">Copy</button></div></div>
- <div class="sec"><span>Bandwidth usage</span><small>${unl?'Unlimited plan':fb(b.quota)+' plan'}</small></div>
- <div class="card"><div class="row"><span>Used</span><b>${fb(used)}</b></div><div class="bar"><u style="width:${unl?100:Math.min(100,pct*100)}%"></u></div>
- <div class="row"><span>Download <b>${fb(b.down)}</b></span><span>Upload <b>${fb(b.up)}</b></span></div><div class="row" style="margin-top:8px"><span>Remaining</span><b>${unl?'∞':fb(Math.max(0,b.quota-used))}</b></div></div>`);
- document.getElementById('cp').onclick=e=>copy(d.uuid,e.target);
-},
-async servers(){
- const d=await load();if(!d)return;fixPref(d);const q={Excellent:'#2fb67c',Good:'#7bc043',Fair:'#f0a43a'};
- const draw=()=>{shell(d,`<p class="hi" style="margin-top:22px">Connection preferences</p><h1 style="margin-top:4px">Pick your<br>route</h1>
- <div class="sec"><span>Network</span></div><div class="card"><div class="chips" style="margin:0">${nets(d).map(n=>`<button class="chip ${n.id===pref.net?'on':''}" data-n="${esc(n.id)}">${esc(n.name)}</button>`).join('')||'<small>No networks</small>'}</div></div>
- <div class="sec"><span>Server</span><small>${vis(d).length} available</small></div><div class="card">${vis(d).map(s=>`<button class="srv ${s.id===pref.srv?'on':''}" data-s="${esc(s.id)}"><img src="${esc(s.flag)}" alt="" onerror="this.style.visibility='hidden'"><div>${esc(s.name)}<small><span class="dot" style="background:${q[s.quality]||'#aaa'}"></span>${esc(s.quality)}</small></div><em>${+s.ping||'–'} ms</em></button>`).join('')||'<p class="note">No servers for this network.</p>'}<p class="note">Saved on this device. Used when you import into an app.</p></div>`);
-  A.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>{pref.net=b.dataset.n;pref.srv='';fixPref(d);ls.set('vip_net',pref.net);ls.set('vip_srv',pref.srv);draw()});
-  A.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{pref.srv=b.dataset.s;ls.set('vip_srv',pref.srv);draw()})};
- draw();
-},
-async apps(){
- const d=await load();if(!d)return;fixPref(d);const p=plat();
- const draw=()=>{const raw=subFor(d),nm=(nets(d).find(n=>n.id===pref.net)||{}).name||'';
- shell(d,`<p class="hi" style="margin-top:22px">Supported VPN apps</p><h1 style="margin-top:4px">Get<br>connected</h1>
- <div class="sec"><span>Select network</span><small>changes your subscription</small></div>
- <div class="card"><div class="chips" style="margin:0">${nets(d).map(n=>`<button class="chip ${n.id===pref.net?'on':''}" data-n="${esc(n.id)}">${esc(n.name)}</button>`).join('')||'<small>No networks</small>'}</div></div>
- <div class="sec"><span>Subscription URL</span></div>
- <div class="card">${raw?`<div class="uuid" style="margin-top:0"><code>${esc(raw)}</code><button class="sm b" id="cs">Copy</button></div><p class="note">${nm?esc(nm)+' network. ':''}Copy it into your VPN app, or tap an app below to import it.</p>`:'<p class="note">The subscription link is turned off on the server (Admin &gt; Website API &gt; send subscription link).</p>'}</div>
- <div class="sec"><span>Import to app</span><small>${(d.apps||[]).length} apps</small></div>
- <div class="card">${(d.apps||[]).map(a=>{const l=raw&&a.scheme?a.scheme.replace('{url}',encodeURIComponent(raw)).replace('{raw}',raw).replace('{name}',encodeURIComponent(C.NAME||'VIP')):'',dl=a[p]||a.ios||a.android||a.pc;
- return`<div class="app" ${l?`data-l="${esc(l)}" role="link" tabindex="0"`:''}><i>${esc(a.name[0])}</i><div><b>${esc(a.name)}</b><small>${esc(a.sub)}</small></div>${dl?`<a class="sm g" href="${esc(dl)}" target="_blank" rel="noopener">Get</a>`:''}${l?`<a class="sm b" href="${esc(l)}">Import</a>`:''}</div>`}).join('')||'<p class="note">No apps listed.</p>'}</div>`);
-  const cs=document.getElementById('cs');if(cs)cs.onclick=()=>copy(raw,cs);
-  A.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>{pref.net=b.dataset.n;ls.set('vip_net',pref.net);draw()});
-  A.querySelectorAll('.app[data-l]').forEach(r=>{const go2=e=>{if(e.target.closest('a'))return;location.href=r.dataset.l};r.onclick=go2;r.onkeydown=e=>{if(e.key==='Enter')go2(e)}})};
- draw();
-}};
-function route(){
- PG=location.hash.replace(/^#\//,'');
- if(!pages[PG])PG=ls.get('vip_token')||D?'dashboard':'login';
- pages[PG]();
+   if(e.code===400||e.code===404||e.code===429){const n=addFail(e.code);if(lockLeft()>0)return tick();bad(e.message+(n<3?' ('+(3-n)+' '+(3-n===1?'try':'tries')+' left before a wait)':''))}
+   else bad(e.message)}};
+ b.onclick=run;u.onkeydown=e=>{if(e.key==='Enter')run()};
+ document.getElementById('pa').onclick=async()=>{try{const t=(await navigator.clipboard.readText()).trim();if(t){u.value=t;run()}}catch(e){u.focus();toast('Long-press the field to paste')}};
+ tick();
 }
+function dashHTML(d){
+ const m=d.member,b=d.bandwidth,now=Date.now()/1000,left=Math.max(0,Math.ceil((m.expires-now)/86400)),act=m.expires>now&&m.status==='active';
+ const used=(b.up||0)+(b.down||0),unl=b.unlimited||!b.quota,pct=unl?0:Math.min(1,used/b.quota),dp=m.days?Math.min(1,left/m.days):0,c=2*Math.PI*44;
+ return`${top()}<div><p class="eyebrow">Hello, ${esc(d.uuid.slice(0,8).toUpperCase())}</p><h1>Stay<br>connected</h1></div>
+ <article class="card glass heroc" style="margin-top:22px"><div class="ring"><svg viewBox="0 0 104 104"><defs><linearGradient id="rg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#b793ff"/><stop offset="1" stop-color="#6a43f0"/></linearGradient></defs><circle class="t" cx="52" cy="52" r="44"/><circle class="v" cx="52" cy="52" r="44" stroke="url(#rg)" style="--c:${c};--to:${c*(1-dp)}"/></svg><div><b>${left}</b><small>days left</small></div></div>
+ <div><span class="badge ${act?'':'x'}">${act?'Active':'Expired'}</span><h2>Membership</h2><p>${fd(m.created)} → ${fd(m.expires)}</p></div></article>
+ <article class="card glass"><div class="cardhd"><span>Bandwidth</span><small>${unl?'Unlimited plan':fb(b.quota)+' plan'}</small></div>
+ <div class="big" style="margin-top:8px">${fb(used)} <small>${unl?'used':'of '+fb(b.quota)}</small></div><div class="bar"><u style="--p:${unl?1:pct}"></u></div>
+ <div class="stats"><div><span>Download</span><b>${fb(b.down)}</b></div><div><span>Upload</span><b>${fb(b.up)}</b></div><div><span>Remaining</span><b>${unl?'∞':fb(Math.max(0,b.quota-used))}</b></div></div></article>
+ <article class="card glass"><div class="cardhd"><span>Your login ID</span></div><div class="uu"><code>${esc(d.uuid)}</code><button class="sm" data-act="copyuuid">${ic('copy')}Copy</button></div></article>
+ <button class="btn" data-act="go" data-to="servers">Connect now ${ic('arrow')}</button>`;
+}
+const netsHTML=d=>nets(d).map(n=>`<button class="chip ${n.id===S.pref.net?'on':''}" data-act="net" data-id="${esc(n.id)}">${esc(n.name)}</button>`).join('')||'<small style="padding:8px 14px;color:var(--mut)">No networks</small>';
+const srvHTML=d=>{const q={Excellent:'#2fb67c',Good:'#7bc043',Fair:'#f0a43a'};return vis(d).map(s=>`<button class="srv ${s.id===S.pref.srv?'on':''}" data-act="srv" data-id="${esc(s.id)}"><img class="flag" src="${esc(s.flag)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'"><span class="nm">${esc(s.name)}<small><i class="dot" style="background:${q[s.quality]||'#aaa'}"></i>${esc(s.quality)}</small></span><span class="ms">${+s.ping||'–'} ms</span><span class="tick">${ic('check')}</span></button>`).join('')||'<p class="note" style="padding:10px 12px;margin:0">No servers for this network.</p>'};
+function subHTML(d){const raw=subFor(d),nm=(nets(d).find(n=>n.id===S.pref.net)||{}).name||'';
+ return raw?`<div class="uu" style="margin-top:0"><code>${esc(raw)}</code></div><button class="btn" data-act="copysub" style="margin-top:12px">${ic('copy')}Copy subscription URL</button><p class="note">${nm?esc(nm)+' network. ':''}Paste it into your VPN app, or tap an app below to import it automatically.</p>`
+ :`<p class="note" style="margin:0">The subscription link is not enabled on the server yet. In Admin › Website API tick “Send the subscription link” and save.</p>`}
+function appsHTML(d){const raw=subFor(d),p=plat(),L=(d.apps||[]).slice().sort((a,b)=>!!b[p]-!!a[p]);
+ return L.map(a=>{const l=importLink(a,raw),dl=a[p]||a.ios||a.android||a.pc;
+  const body=`${tileOf(a)}<span class="nm">${esc(a.name)}<small>${esc(a.sub)}</small></span>${l?`<span class="sm p">${ic('bolt')}Import</span>`:''}`;
+  return`<div class="app">${l?`<a class="main" href="${esc(l)}" data-imp="${esc(a.name)}">${body}</a>`:`<div class="main">${body}</div>`}${dl?`<a class="sm" href="${esc(dl)}" target="_blank" rel="noopener" aria-label="Download ${esc(a.name)}">${ic('dl')}Get</a>`:''}</div>`}).join('')||'<p class="note" style="padding:10px 12px;margin:0">No apps listed.</p>'}
+function serversHTML(d){
+ return`${top()}<div><p class="eyebrow">Connection preferences</p><h1>Pick your<br>route</h1></div>
+ <div class="sec"><span>Network</span></div><div class="chips glass" id="nets">${netsHTML(d)}</div>
+ <div class="sec"><span>Servers</span><small id="cnt">${vis(d).length} available</small></div><div class="list glass" id="sv">${srvHTML(d)}</div>
+ <div class="sec"><span>Subscription</span><small>changes with network</small></div><div class="card glass" id="sb">${subHTML(d)}</div>
+ <div class="sec"><span>Supported apps</span><small>tap to import</small></div><div class="list glass" id="ap">${appsHTML(d)}</div>`;
+}
+function paint(d,ids){const m={nets:['nets',netsHTML],sv:['sv',srvHTML],sb:['sb',subHTML],ap:['ap',appsHTML]};ids.forEach(k=>{const el=document.getElementById(m[k][0]);if(el)el.innerHTML=m[k][1](d)});const c=document.getElementById('cnt');if(c)c.textContent=vis(d).length+' available'}
+
+/* ---------- router ---------- */
+let rid=0;
+const skeleton=()=>`<section class="page">${top()}<div class="sk" style="margin-top:90px"></div><div class="sk"></div><div class="sk" style="height:110px"></div></section>`;
+function show(pg,d,still){view.innerHTML=`<section class="page stg${still?' still':''}">${pg==='servers'?serversHTML(d):dashHTML(d)}</section>`}
+function fail(e){view.innerHTML=`<section class="page"><div class="card glass center" style="margin-top:120px"><h1 style="font-size:26px">Something went wrong</h1><p>${esc(e.message)}${/domain/i.test(e.message)?'<br><small>Add this website’s domain in Admin › Website API.</small>':''}</p><button class="btn" data-act="retry">Try again</button><button class="sm" data-act="logout" style="margin-top:12px">Log out</button></div></section>`}
+async function route(){
+ const id=++rid;let pg=location.hash.replace(/^#\/?/,'').replace('.html','');if(pg==='apps')pg='servers';
+ const authed=!!ls.get('vip_token')||D;
+ if(!['dashboard','servers','login'].includes(pg))pg=authed?'dashboard':'login';
+ if(pg!=='login'&&!authed)pg='login';
+ window.scrollTo(0,0);
+ if(pg==='login'){tabs.classList.add('off');renderLogin();return}
+ tabs.classList.remove('off');tabs.classList.toggle('s1',pg==='servers');tabs.querySelectorAll('a').forEach(a=>a.classList.toggle('on',a.dataset.p===pg));
+ if(S.data){fixPref(S.data);show(pg,S.data,false);
+  if(Date.now()-S.at>45000){try{const d=await fetchMe();if(id===rid){fixPref(d);show(pg,d,true)}}catch(e){if(e.code===401)expire(e)}}return}
+ view.innerHTML=skeleton();
+ try{const d=await fetchMe();if(id!==rid)return;fixPref(d);show(pg,d,false)}catch(e){if(id!==rid)return;e.code===401?expire(e):fail(e)}
+}
+function expire(e){ls.del('vip_token');S.data=null;try{sessionStorage.setItem('vip_msg',e.message)}catch(x){}go('login')}
+
+/* ---------- events (one delegated listener) ---------- */
+view.addEventListener('click',e=>{
+ const imp=e.target.closest('a[data-imp]');
+ if(imp){toast('Opening '+imp.dataset.imp+'…');const t=setTimeout(()=>{if(!document.hidden)toast('App didn’t open? Install it with “Get”, then use Copy URL.')},1800);
+  document.addEventListener('visibilitychange',()=>clearTimeout(t),{once:true});return}
+ const t=e.target.closest('[data-act]');if(!t)return;const d=S.data,a=t.dataset.act;
+ if(a==='logout'){ls.del('vip_token');S.data=null;go('login')}
+ else if(a==='go')go(t.dataset.to);
+ else if(a==='retry')route();
+ else if(a==='copyuuid'&&d)copy(d.uuid,t);
+ else if(a==='copysub'&&d){const r=subFor(d);if(r)copy(r,t)}
+ else if(a==='net'&&d){S.pref.net=t.dataset.id;S.pref.srv='';fixPref(d);paint(d,['nets','sv','sb','ap'])}
+ else if(a==='srv'&&d){S.pref.srv=t.dataset.id;ls.set('vip_srv',S.pref.srv);view.querySelectorAll('.srv').forEach(x=>x.classList.toggle('on',x===t))}
+});
 addEventListener('hashchange',route);route();
 })();
 </script></body></html>
