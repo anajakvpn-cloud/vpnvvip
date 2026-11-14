@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#a98af0"><title>AnajakVIP</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap">
+<style>
+:root{--ink:#2b2257;--mut:#8b85ad;--p1:#7a4be0;--p2:#a67ff6;--bg:#ece7fb;--card:rgba(255,255,255,.8);--ok:#2fb67c;--bad:#e5586e;--warn:#f0a43a}
+@media(prefers-color-scheme:dark){:root{--ink:#f1edff;--mut:#a69fcc;--bg:#171230;--card:rgba(48,40,92,.72)}}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html{background:var(--bg)}
+body{font:400 15px/1.45 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:linear-gradient(165deg,color-mix(in srgb,var(--bg) 70%,#fff),var(--bg) 55%,color-mix(in srgb,var(--bg) 85%,#b9a6ff));min-height:100dvh}
+#app{max-width:440px;margin:0 auto;min-height:100dvh;position:relative;overflow:hidden;padding:env(safe-area-inset-top) 0 calc(96px + env(safe-area-inset-bottom))}
+@media(min-width:520px){#app{margin:20px auto;min-height:calc(100dvh - 40px);border-radius:44px;box-shadow:0 40px 80px -30px rgba(90,60,200,.45)}}
+.hero{position:absolute;inset:0 0 auto;height:330px;background:radial-gradient(120% 90% at 20% 0,#c9b2ff,transparent 60%),linear-gradient(160deg,#a888f5,#8a5df0 55%,#b49bf8);border-radius:0 0 46px 46px;opacity:.95}
+.in{position:relative;padding:22px 20px}
+.top{display:flex;justify-content:space-between;align-items:center;color:#fff}
+.ib{width:42px;height:42px;border-radius:15px;border:0;background:rgba(255,255,255,.28);backdrop-filter:blur(8px);color:#fff;display:grid;place-items:center;cursor:pointer}
+.ib svg,.nav svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+h1{color:#fff;font-weight:800;font-size:40px;line-height:1.04;letter-spacing:-.03em;margin:26px 0 8px}
+.hi{color:rgba(255,255,255,.9);font-weight:600}
+.sec{display:flex;justify-content:space-between;align-items:center;margin:30px 2px 12px;font-weight:800;font-size:16px;color:var(--ink)}
+.sec small{font-weight:600;color:var(--mut)}
+.card{background:var(--card);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:28px;padding:18px;box-shadow:0 16px 34px -14px rgba(110,80,210,.4),inset 0 1px 0 rgba(255,255,255,.7)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.tile{text-align:left}.tile b{display:block;font-size:15px;margin-top:10px}.tile span{font-size:12px;color:var(--mut)}
+.ring{position:relative;width:86px;height:86px}.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:5;stroke-linecap:round}.ring .t{stroke:rgba(150,120,230,.2)}
+.ring i{position:absolute;inset:15px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 30% 25%,#fff,#e5dafd 60%,#c8b3fa);box-shadow:0 8px 16px -6px rgba(122,75,224,.55),inset 0 -3px 6px rgba(122,75,224,.18);color:var(--p1)}
+.ring i svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.badge{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:12px;padding:4px 10px;border-radius:99px;background:rgba(47,182,124,.15);color:var(--ok)}
+.badge.x{background:rgba(229,88,110,.15);color:var(--bad)}.badge:before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.uuid{display:flex;align-items:center;gap:10px;margin-top:10px}
+.uuid code{flex:1;font:600 12.5px ui-monospace,Menlo,monospace;word-break:break-all;background:rgba(150,120,230,.12);padding:10px 12px;border-radius:14px}
+.bar{height:10px;border-radius:9px;background:rgba(150,120,230,.2);overflow:hidden;margin:14px 0 8px}.bar u{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--p2),var(--p1));transition:width .8s}
+.row{display:flex;justify-content:space-between;font-size:13px;color:var(--mut)}.row b{color:var(--ink)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px}
+.chip{border:0;font:700 13px inherit;font-family:inherit;padding:9px 16px;border-radius:99px;background:rgba(150,120,230,.14);color:var(--ink);cursor:pointer}
+.chip.on,.btn{background:linear-gradient(135deg,var(--p2),var(--p1));color:#fff;box-shadow:0 10px 20px -8px rgba(122,75,224,.7)}
+.srv{display:flex;align-items:center;gap:12px;width:100%;border:2px solid transparent;font-family:inherit;color:inherit;text-align:left;background:rgba(255,255,255,.55);padding:11px 12px;border-radius:20px;margin-top:8px;cursor:pointer}
+.srv.on{border-color:var(--p2);background:rgba(166,127,246,.14)}.srv img{width:32px;height:32px;border-radius:50%;object-fit:cover;background:#ddd}
+.srv div{flex:1;font-weight:700}.srv small{display:block;font-weight:500;color:var(--mut)}.srv em{font-style:normal;font-weight:800;font-size:13px}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:5px}
+.app{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid rgba(150,120,230,.16)}.app:first-of-type{border-top:0}
+.app>i{width:46px;height:46px;border-radius:16px;display:grid;place-items:center;font:800 18px inherit;font-family:inherit;color:#fff;background:linear-gradient(135deg,var(--p2),var(--p1));font-style:normal}
+.app div{flex:1;min-width:0}.app b{display:block}.app small{color:var(--mut);font-size:12px}
+.sm{border:0;font:700 12.5px inherit;font-family:inherit;padding:9px 14px;border-radius:99px;cursor:pointer;text-decoration:none;display:inline-block}
+.sm.g{background:rgba(150,120,230,.16);color:var(--p1)}.sm.b{background:var(--p1);color:#fff}
+.btn{width:100%;border:0;border-radius:99px;padding:15px;font:800 16px inherit;font-family:inherit;cursor:pointer}
+.btn:disabled{opacity:.6}
+.login .in{padding-top:70px}.login .card{margin-top:34px}
+input{width:100%;border:2px solid rgba(150,120,230,.25);background:rgba(255,255,255,.7);color:#2b2257;border-radius:18px;padding:14px;font:600 14px ui-monospace,Menlo,monospace;margin:8px 0 12px;outline:0}input:focus{border-color:var(--p2)}
+label{font-weight:700;font-size:13px}.err{color:var(--bad);font-size:13px;min-height:20px;margin-top:10px;text-align:center}
+.nav{position:fixed;bottom:calc(14px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(412px,calc(100% - 28px));display:flex;justify-content:space-around;padding:12px;border-radius:30px;background:var(--card);backdrop-filter:blur(18px);box-shadow:0 20px 40px -14px rgba(110,80,210,.5)}
+.nav a{color:var(--mut);padding:6px 14px;border-radius:16px;display:grid;place-items:center}.nav a:hover,.nav a.on{color:var(--p1);background:rgba(150,120,230,.14)}
+.note{font-size:12px;color:var(--mut);margin-top:10px}
+:focus-visible{outline:3px solid var(--p2);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head>
+<body><div id="app"></div>
+<script>
+/* ===== SETTINGS =====
+   API  = address of your AnajakVIP site (where index.php lives). Copy it from Admin > Website API.
+   This website's domain must be added to the allowed domains in Admin > Website API.
+   Preview without a server: open index.html?demo */
+window.CFG={API:"https://your-anajakvip-domain.com/",NAME:"AnajakVIP"};
+</script>
+<script>
+(()=>{
+const C=window.CFG||{},A=document.getElementById('app');let PG='';
+const D=/[?&]demo/.test(location.search);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ls={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},del:k=>{try{localStorage.removeItem(k)}catch(e){}}};
+const UU=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const P={home:'M3 11l9-8 9 8v10a1 1 0 01-1 1h-5v-7H9v7H4a1 1 0 01-1-1z',globe:'M12 2a10 10 0 100 20 10 10 0 000-20zM2 12h20M12 2c3 3 4 6.500 4 10s-1 7-4 10c-3-3-4-6.500-4-10s1-7 4-10z',grid:'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z',out:'M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9',crown:'M3 7l4 4 5-7 5 7 4-4-2 12H5z',pulse:'M3 12h4l3-8 4 16 3-8h4'};
+const ic=n=>`<svg viewBox="0 0 24 24"><path d="${P[n]}"/></svg>`;
+const fb=b=>{b=+b||0;const u=['B','KB','MB','GB','TB'];let i=0;while(b>=1024&&i<4){b/=1024;i++}return(i>1?b.toFixed(2):Math.round(b))+' '+u[i]};
+const fd=t=>new Date(t*1000).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
+const go=h=>{const r='#/'+h.replace('.html','');if(location.hash===r)route();else location.hash=r};
+const pref={net:ls.get('vip_net')||'',srv:ls.get('vip_srv')||''};
+
+/* ---------- API ---------- */
+const demo=async(a,b)=>{await new Promise(r=>setTimeout(r,300));const n=Date.now()/1000|0;return{ok:true,token:'demo',uuid:b.uuid||'3f9a21c4-7b1e-4c2d-9a55-0e8d6f1b2a77',
+member:{status:'active',days:30,created:n-12*86400,expires:n+18*86400},bandwidth:{unlimited:false,quota:107374182400,up:6.2e9,down:41.8e9},subUrls:{'':'https://example.com/?e=demo'},
+networks:[{id:'smart',name:'Smart'},{id:'cellcard',name:'Cellcard'},{id:'metfone',name:'Metfone'}],
+servers:[{id:'s1',name:'Cambodia',flag:'https://flagcdn.com/w80/kh.png',ping:20,quality:'Excellent',allNets:false,networkIds:['smart','cellcard']},{id:'s2',name:'Singapore',flag:'https://flagcdn.com/w80/sg.png',ping:34,quality:'Excellent',allNets:true,networkIds:[]},{id:'s3',name:'United States',flag:'https://flagcdn.com/w80/us.png',ping:218,quality:'Fair',allNets:false,networkIds:['metfone']}],
+apps:[{id:'happ',name:'Happ',sub:'Android · iOS · Desktop',scheme:'happ://add/{raw}',ios:'#',android:'#',pc:'#'},{id:'v2box',name:'V2Box',sub:'iOS · V2Ray client',scheme:'v2box://install-sub?url={url}&name={name}',ios:'#',android:'',pc:''},{id:'v2rayng',name:'v2rayNG',sub:'Android · V2Ray client',scheme:'v2rayng://install-sub?url={url}&name={name}',ios:'',android:'#',pc:''}]}};
+async function api(a,body){
+ if(D)return demo(a,body||{});
+ let r;try{r=await fetch(C.API+(C.API.includes('?')?'&':'?')+'api=vip_'+a,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body||{})})}catch(e){throw new Error('Cannot reach the server')}
+ const j=await r.json().catch(()=>({ok:false,error:'Bad server response'}));
+ if(!j.ok){const e=new Error(j.error||'Request failed');e.code=r.status;throw e}return j;
+}
+
+/* ---------- shared layout ---------- */
+const nav=a=>`<nav class="nav" aria-label="Pages">${[['dashboard','home','Home'],['servers','globe','Servers'],['apps','grid','Apps']].map(([p,i,l])=>`<a href="#/${p}" class="${p===a?'on':''}" aria-label="${l}">${ic(i)}</a>`).join('')}</nav>`;
+function shell(d,body){
+ A.innerHTML=`<div class="hero"></div><main class="in"><div class="top"><span class="ib" aria-hidden="true">${ic('crown')}</span><button class="ib" id="lo" aria-label="Log out">${ic('out')}</button></div>${body}</main>${nav(PG)}`;
+ document.getElementById('lo').onclick=()=>{ls.del('vip_token');go('login.html')};
+}
+async function load(){
+ const t=ls.get('vip_token');if(!t&&!D)return go('login.html');
+ try{return await api('me',{token:t})}catch(e){ls.del('vip_token');try{sessionStorage.setItem('vip_msg',e.message)}catch(x){}go('login.html')}
+}
+const ring=(p,icon)=>{const r=36,c=2*Math.PI*r;p=Math.max(0,Math.min(1,p));
+ return`<div class="ring"><svg viewBox="0 0 86 86"><defs><linearGradient id="g${icon}" x1="0" x2="1"><stop offset="0" stop-color="#b793ff"/><stop offset="1" stop-color="#7a4be0"/></linearGradient></defs><circle class="t" cx="43" cy="43" r="36"/><circle cx="43" cy="43" r="36" stroke="url(#g${icon})" stroke-dasharray="${c}" stroke-dashoffset="${c*(1-p)}"/></svg><i>${ic(icon)}</i></div>`};
+const nets=d=>d.networks||[];
+const vis=d=>(d.servers||[]).filter(s=>!pref.net||s.allNets||(s.networkIds||[]).includes(pref.net));
+function fixPref(d){if(!nets(d).some(n=>n.id===pref.net))pref.net=nets(d)[0]?.id||'';const l=vis(d);if(!l.some(s=>s.id===pref.srv))pref.srv=l[0]?.id||''}
+const subFor=d=>{const m=d.subUrls||{};return m[pref.net]||m['']||''};
+const plat=()=>/iPhone|iPad|iPod/i.test(navigator.userAgent)?'ios':/Android/i.test(navigator.userAgent)?'android':'pc';
+
+/* ---------- pages ---------- */
+const pages={
+login(){
+ let msg='';try{msg=sessionStorage.getItem('vip_msg')||'';sessionStorage.removeItem('vip_msg')}catch(e){}
+ A.innerHTML=`<div class="hero"></div><main class="login"><div class="in"><h1>Welcome<br>back!</h1><p class="hi">Sign in with your VIP UUID</p>
+ <div class="card"><label for="u">UUID</label><input id="u" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" autocomplete="off" spellcheck="false">
+ <button class="btn" id="go">Login</button><p class="err" id="er" role="alert">${esc(msg)}</p></div></div></main>`;
+ const u=document.getElementById('u'),b=document.getElementById('go'),er=document.getElementById('er');
+ const run=async()=>{const v=u.value.trim().toLowerCase();er.textContent='';if(!UU.test(v)&&!D){er.textContent='Enter a valid UUID';return}
+  b.disabled=true;b.textContent='Checking…';
+  try{const j=await api('login',{uuid:v});ls.set('vip_token',j.token);go('dashboard.html')}
+  catch(e){er.textContent=e.message;b.disabled=false;b.textContent='Login'}};
+ b.onclick=run;u.onkeydown=e=>{if(e.key==='Enter')run()};
+},
+async dashboard(){
+ const d=await load();if(!d)return;const m=d.member,b=d.bandwidth,now=Date.now()/1000,left=Math.max(0,Math.ceil((m.expires-now)/86400)),act=m.expires>now&&m.status==='active';
+ const used=(b.up||0)+(b.down||0),unl=b.unlimited||!b.quota,pct=unl?0:used/b.quota;
+ shell(d,`<p class="hi" style="margin-top:22px">Hello, ${esc(d.uuid.slice(0,8).toUpperCase())}</p><h1 style="margin-top:4px">Stay<br>connected!</h1>
+ <div class="sec"><span>Your VIP</span></div>
+ <div class="grid"><div class="card tile">${ring(m.days?left/m.days:0,'crown')}<b>Membership</b><span class="badge ${act?'':'x'}">${act?'Active':'Expired'}</span></div>
+ <div class="card tile">${ring(pct,'pulse')}<b>Bandwidth</b><span>${unl?'Unlimited':Math.round(pct*100)+'% used'}</span></div></div>
+ <div class="card" style="margin-top:14px"><div class="row"><span>Membership status</span><b>${act?left+' days left':'Expired'}</b></div><div class="bar"><u style="width:${m.days?Math.min(100,left/m.days*100):0}%"></u></div>
+ <div class="row"><span>Started <b>${fd(m.created)}</b></span><span>Ends <b>${fd(m.expires)}</b></span></div></div>
+ <div class="sec"><span>UUID</span></div><div class="card"><div class="row"><span>Your login ID</span></div><div class="uuid"><code>${esc(d.uuid)}</code><button class="sm g" id="cp">Copy</button></div></div>
+ <div class="sec"><span>Bandwidth usage</span><small>${unl?'Unlimited plan':fb(b.quota)+' plan'}</small></div>
+ <div class="card"><div class="row"><span>Used</span><b>${fb(used)}</b></div><div class="bar"><u style="width:${unl?100:Math.min(100,pct*100)}%"></u></div>
+ <div class="row"><span>Download <b>${fb(b.down)}</b></span><span>Upload <b>${fb(b.up)}</b></span></div><div class="row" style="margin-top:8px"><span>Remaining</span><b>${unl?'∞':fb(Math.max(0,b.quota-used))}</b></div></div>`);
+ document.getElementById('cp').onclick=e=>{navigator.clipboard?.writeText(d.uuid);e.target.textContent='Copied'};
+},
+async servers(){
+ const d=await load();if(!d)return;fixPref(d);const q={Excellent:'#2fb67c',Good:'#7bc043',Fair:'#f0a43a'};
+ const draw=()=>{shell(d,`<p class="hi" style="margin-top:22px">Connection preferences</p><h1 style="margin-top:4px">Pick your<br>route</h1>
+ <div class="sec"><span>Network</span></div><div class="card"><div class="chips" style="margin:0">${nets(d).map(n=>`<button class="chip ${n.id===pref.net?'on':''}" data-n="${esc(n.id)}">${esc(n.name)}</button>`).join('')||'<small>No networks</small>'}</div></div>
+ <div class="sec"><span>Server</span><small>${vis(d).length} available</small></div><div class="card">${vis(d).map(s=>`<button class="srv ${s.id===pref.srv?'on':''}" data-s="${esc(s.id)}"><img src="${esc(s.flag)}" alt="" onerror="this.style.visibility='hidden'"><div>${esc(s.name)}<small><span class="dot" style="background:${q[s.quality]||'#aaa'}"></span>${esc(s.quality)}</small></div><em>${+s.ping||'–'} ms</em></button>`).join('')||'<p class="note">No servers for this network.</p>'}<p class="note">Saved on this device. Used when you import into an app.</p></div>`);
+  A.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>{pref.net=b.dataset.n;pref.srv='';fixPref(d);ls.set('vip_net',pref.net);ls.set('vip_srv',pref.srv);draw()});
+  A.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{pref.srv=b.dataset.s;ls.set('vip_srv',pref.srv);draw()})};
+ draw();
+},
+async apps(){
+ const d=await load();if(!d)return;fixPref(d);const p=plat();
+ shell(d,`<p class="hi" style="margin-top:22px">Supported VPN apps</p><h1 style="margin-top:4px">Get<br>connected</h1><div class="sec"><span>Apps</span><small>${(d.apps||[]).length} available</small></div>
+ <div class="card">${(d.apps||[]).map(a=>{const raw=subFor(d),l=raw&&a.scheme?a.scheme.replace('{url}',encodeURIComponent(raw)).replace('{raw}',raw).replace('{name}',encodeURIComponent(C.NAME||'VIP')):'',dl=a[p]||a.ios||a.android||a.pc;
+ return`<div class="app"><i>${esc(a.name[0])}</i><div><b>${esc(a.name)}</b><small>${esc(a.sub)}</small></div>${dl?`<a class="sm g" href="${esc(dl)}" target="_blank" rel="noopener">Get</a>`:''}${l?`<a class="sm b" href="${esc(l)}">Import</a>`:''}</div>`}).join('')||'<p class="note">No apps listed.</p>'}
+ ${subFor(d)?'':'<p class="note">One-tap import is turned off by the server. Use your subscription link inside the app.</p>'}</div>`);
+}};
+function route(){
+ PG=location.hash.replace(/^#\//,'');
+ if(!pages[PG])PG=ls.get('vip_token')||D?'dashboard':'login';
+ pages[PG]();
+}
+addEventListener('hashchange',route);route();
+})();
+</script></body></html>
