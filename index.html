@@ -53,6 +53,8 @@ label{font-weight:700;font-size:13px}.err{color:var(--bad);font-size:13px;min-he
 .note{font-size:12px;color:var(--mut);margin-top:10px}
 :focus-visible{outline:3px solid var(--p2);outline-offset:2px}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.app[data-l]{cursor:pointer}.app[data-l]:active{opacity:.7}
+input:disabled{opacity:.55}
 </style></head>
 <body><div id="app"></div>
 <script>
@@ -60,7 +62,7 @@ label{font-weight:700;font-size:13px}.err{color:var(--bad);font-size:13px;min-he
    API  = address of your AnajakVIP site (where index.php lives). Copy it from Admin > Website API.
    This website's domain must be added to the allowed domains in Admin > Website API.
    Preview without a server: open index.html?demo */
-window.CFG={API:"https://anajakvip.shop/",NAME:"AnajakVIP"};
+window.CFG={API:"https://https://anajakvip.shop/",NAME:"AnajakVIP"};
 </script>
 <script>
 (()=>{
@@ -107,6 +109,12 @@ function fixPref(d){if(!nets(d).some(n=>n.id===pref.net))pref.net=nets(d)[0]?.id
 const subFor=d=>{const m=d.subUrls||{};return m[pref.net]||m['']||''};
 const plat=()=>/iPhone|iPad|iPod/i.test(navigator.userAgent)?'ios':/Android/i.test(navigator.userAgent)?'android':'pc';
 
+const copy=async(t,btn)=>{try{await navigator.clipboard.writeText(t)}catch(e){const x=document.createElement('textarea');x.value=t;x.style.cssText='position:fixed;opacity:0';document.body.appendChild(x);x.select();try{document.execCommand('copy')}catch(_){}x.remove()}const o=btn.textContent;btn.textContent='Copied';setTimeout(()=>btn.textContent=o,1800)};
+/* login lockout: wrong UUID several times -> wait before trying again (kept in this browser; the server also limits per IP) */
+const lockLeft=()=>Math.max(0,Math.ceil((+(ls.get('vip_lock')||0)-Date.now())/1000));
+const mmss=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
+function addFail(code){const n=(+(ls.get('vip_fails')||0))+1;ls.set('vip_fails',n);const s=code===429?600:n>=6?600:n===5?180:n===4?60:n===3?30:0;if(s)ls.set('vip_lock',Date.now()+s*1000);return n}
+function clearFails(){ls.del('vip_fails');ls.del('vip_lock')}
 /* ---------- pages ---------- */
 const pages={
 login(){
@@ -114,12 +122,18 @@ login(){
  A.innerHTML=`<div class="hero"></div><main class="login"><div class="in"><h1>Welcome<br>back!</h1><p class="hi">Sign in with your VIP UUID</p>
  <div class="card"><label for="u">UUID</label><input id="u" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" autocomplete="off" spellcheck="false">
  <button class="btn" id="go">Login</button><p class="err" id="er" role="alert">${esc(msg)}</p></div></div></main>`;
- const u=document.getElementById('u'),b=document.getElementById('go'),er=document.getElementById('er');
- const run=async()=>{const v=u.value.trim().toLowerCase();er.textContent='';if(!UU.test(v)&&!D){er.textContent='Enter a valid UUID';return}
+ const u=document.getElementById('u'),b=document.getElementById('go'),er=document.getElementById('er');let tm=0,locked=false;
+ const tick=()=>{clearTimeout(tm);const s=lockLeft();
+  if(s>0){locked=true;u.disabled=b.disabled=true;b.textContent='Wait '+mmss(s);er.textContent='Too many failed attempts. Please wait to login again.';tm=setTimeout(tick,1000)}
+  else if(locked){locked=false;u.disabled=b.disabled=false;b.textContent='Login';er.textContent='';u.focus()}};
+ const run=async()=>{if(lockLeft()>0)return tick();const v=u.value.trim().toLowerCase();er.textContent='';
+  if(!UU.test(v)&&!D){er.textContent='Enter a valid UUID';return}
   b.disabled=true;b.textContent='Checking…';
-  try{const j=await api('login',{uuid:v});ls.set('vip_token',j.token);go('dashboard.html')}
-  catch(e){er.textContent=e.message;b.disabled=false;b.textContent='Login'}};
- b.onclick=run;u.onkeydown=e=>{if(e.key==='Enter')run()};
+  try{const j=await api('login',{uuid:v});clearFails();ls.set('vip_token',j.token);go('dashboard.html')}
+  catch(e){b.disabled=false;b.textContent='Login';
+   if(e.code===400||e.code===404||e.code===429){const n=addFail(e.code);if(lockLeft()>0)return tick();er.textContent=e.message+(n<3?' ('+(3-n)+' '+(3-n===1?'try':'tries')+' left before a wait)':'')}
+   else er.textContent=e.message}};
+ b.onclick=run;u.onkeydown=e=>{if(e.key==='Enter')run()};tick();
 },
 async dashboard(){
  const d=await load();if(!d)return;const m=d.member,b=d.bandwidth,now=Date.now()/1000,left=Math.max(0,Math.ceil((m.expires-now)/86400)),act=m.expires>now&&m.status==='active';
@@ -134,7 +148,7 @@ async dashboard(){
  <div class="sec"><span>Bandwidth usage</span><small>${unl?'Unlimited plan':fb(b.quota)+' plan'}</small></div>
  <div class="card"><div class="row"><span>Used</span><b>${fb(used)}</b></div><div class="bar"><u style="width:${unl?100:Math.min(100,pct*100)}%"></u></div>
  <div class="row"><span>Download <b>${fb(b.down)}</b></span><span>Upload <b>${fb(b.up)}</b></span></div><div class="row" style="margin-top:8px"><span>Remaining</span><b>${unl?'∞':fb(Math.max(0,b.quota-used))}</b></div></div>`);
- document.getElementById('cp').onclick=e=>{navigator.clipboard?.writeText(d.uuid);e.target.textContent='Copied'};
+ document.getElementById('cp').onclick=e=>copy(d.uuid,e.target);
 },
 async servers(){
  const d=await load();if(!d)return;fixPref(d);const q={Excellent:'#2fb67c',Good:'#7bc043',Fair:'#f0a43a'};
@@ -147,10 +161,19 @@ async servers(){
 },
 async apps(){
  const d=await load();if(!d)return;fixPref(d);const p=plat();
- shell(d,`<p class="hi" style="margin-top:22px">Supported VPN apps</p><h1 style="margin-top:4px">Get<br>connected</h1><div class="sec"><span>Apps</span><small>${(d.apps||[]).length} available</small></div>
- <div class="card">${(d.apps||[]).map(a=>{const raw=subFor(d),l=raw&&a.scheme?a.scheme.replace('{url}',encodeURIComponent(raw)).replace('{raw}',raw).replace('{name}',encodeURIComponent(C.NAME||'VIP')):'',dl=a[p]||a.ios||a.android||a.pc;
- return`<div class="app"><i>${esc(a.name[0])}</i><div><b>${esc(a.name)}</b><small>${esc(a.sub)}</small></div>${dl?`<a class="sm g" href="${esc(dl)}" target="_blank" rel="noopener">Get</a>`:''}${l?`<a class="sm b" href="${esc(l)}">Import</a>`:''}</div>`}).join('')||'<p class="note">No apps listed.</p>'}
- ${subFor(d)?'':'<p class="note">One-tap import is turned off by the server. Use your subscription link inside the app.</p>'}</div>`);
+ const draw=()=>{const raw=subFor(d),nm=(nets(d).find(n=>n.id===pref.net)||{}).name||'';
+ shell(d,`<p class="hi" style="margin-top:22px">Supported VPN apps</p><h1 style="margin-top:4px">Get<br>connected</h1>
+ <div class="sec"><span>Select network</span><small>changes your subscription</small></div>
+ <div class="card"><div class="chips" style="margin:0">${nets(d).map(n=>`<button class="chip ${n.id===pref.net?'on':''}" data-n="${esc(n.id)}">${esc(n.name)}</button>`).join('')||'<small>No networks</small>'}</div></div>
+ <div class="sec"><span>Subscription URL</span></div>
+ <div class="card">${raw?`<div class="uuid" style="margin-top:0"><code>${esc(raw)}</code><button class="sm b" id="cs">Copy</button></div><p class="note">${nm?esc(nm)+' network. ':''}Copy it into your VPN app, or tap an app below to import it.</p>`:'<p class="note">The subscription link is turned off on the server (Admin &gt; Website API &gt; send subscription link).</p>'}</div>
+ <div class="sec"><span>Import to app</span><small>${(d.apps||[]).length} apps</small></div>
+ <div class="card">${(d.apps||[]).map(a=>{const l=raw&&a.scheme?a.scheme.replace('{url}',encodeURIComponent(raw)).replace('{raw}',raw).replace('{name}',encodeURIComponent(C.NAME||'VIP')):'',dl=a[p]||a.ios||a.android||a.pc;
+ return`<div class="app" ${l?`data-l="${esc(l)}" role="link" tabindex="0"`:''}><i>${esc(a.name[0])}</i><div><b>${esc(a.name)}</b><small>${esc(a.sub)}</small></div>${dl?`<a class="sm g" href="${esc(dl)}" target="_blank" rel="noopener">Get</a>`:''}${l?`<a class="sm b" href="${esc(l)}">Import</a>`:''}</div>`}).join('')||'<p class="note">No apps listed.</p>'}</div>`);
+  const cs=document.getElementById('cs');if(cs)cs.onclick=()=>copy(raw,cs);
+  A.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>{pref.net=b.dataset.n;ls.set('vip_net',pref.net);draw()});
+  A.querySelectorAll('.app[data-l]').forEach(r=>{const go2=e=>{if(e.target.closest('a'))return;location.href=r.dataset.l};r.onclick=go2;r.onkeydown=e=>{if(e.key==='Enter')go2(e)}})};
+ draw();
 }};
 function route(){
  PG=location.hash.replace(/^#\//,'');
