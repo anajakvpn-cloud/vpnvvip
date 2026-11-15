@@ -1,8 +1,10 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8">
+<html lang="km"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#e9e3ff">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;600;700;800&display=swap" rel="stylesheet">
 <title>AnajakVIP</title>
 <style>
 :root{--ink:#1c1b3a;--mut:#6d6a93;--acc:#6f4cf5;--acc2:#a07dff;--ok:#1fb67a;--bad:#e5486a;--warn:#f0a43a;
@@ -12,7 +14,7 @@
 --bg1:#14102e;--bg2:#271240;--bg3:#0d2247;--b1:#5b3fd6;--b2:#b4318a;--b3:#1b6fd1}}
 *{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
 html{background:var(--bg1);-webkit-text-size-adjust:100%}
-body{font:400 15px/1.45 -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Inter','Segoe UI',Roboto,system-ui,sans-serif;color:var(--ink);min-height:100dvh;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+body{font:400 15px/1.7 'Noto Sans Khmer','Khmer OS Battambang','Khmer UI','Leelawadee UI','Hanuman',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,system-ui,sans-serif;color:var(--ink);min-height:100dvh;overflow-x:hidden;-webkit-font-smoothing:antialiased;
 background:linear-gradient(160deg,var(--bg1),var(--bg2) 52%,var(--bg3)) fixed}
 /* ambient light: only transforms animate (GPU) */
 .bg{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
@@ -77,7 +79,7 @@ svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .uu{display:flex;align-items:center;gap:10px;margin-top:12px}
 code{font:600 12.5px/1.4 ui-monospace,'SF Mono',Menlo,Consolas,monospace;word-break:break-all;flex:1;background:rgba(255,255,255,.3);border-radius:14px;padding:11px 13px}
 /* buttons */
-.btn{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:52px;border:0;border-radius:99px;font:700 16px/1 inherit;color:#fff;cursor:pointer;overflow:hidden;
+.btn{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:52px;border:0;border-radius:99px;font:700 16px/1.4 inherit;color:#fff;cursor:pointer;overflow:hidden;
 background:linear-gradient(180deg,#9b78ff,#6a43f0);box-shadow:inset 0 1px 0 rgba(255,255,255,.6),inset 0 -2px 6px rgba(50,20,150,.35),0 14px 26px -10px rgba(111,76,245,.7);transition:transform .35s var(--spring),filter .2s}
 .btn::before{content:"";position:absolute;left:8%;right:8%;top:2px;height:46%;border-radius:99px;background:linear-gradient(180deg,rgba(255,255,255,.5),transparent);pointer-events:none}
 .btn:active{transform:scale(.96)}.btn:disabled{filter:grayscale(.5) opacity(.6);cursor:not-allowed}
@@ -137,14 +139,26 @@ input::placeholder{color:var(--mut);opacity:.7}
 .sk::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.6) 50%,transparent 70%);transform:translateX(-100%);animation:sh 1.3s infinite}
 @keyframes sh{to{transform:translateX(100%)}}
 .center{text-align:center}.center p{margin:8px 0 18px;color:var(--mut)}
+.dvl{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.dv{display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:18px;background:var(--in);box-shadow:inset 0 1px 0 rgba(255,255,255,.5)}
+.dv .di{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:rgba(111,76,245,.14);color:var(--acc);flex:none}
+.dv .dt{flex:1;min-width:0}.dv .dt b{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:14px;line-height:1.5}
+.dv .dt small{display:block;color:var(--mut);font-size:12px;line-height:1.55;word-break:break-all;font-weight:600}
+.dv .dt small.ag{font-weight:400;opacity:.85;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pill{font-size:11px;font-weight:700;padding:2px 9px;border-radius:99px;background:rgba(31,182,122,.16);color:var(--ok)}
+.hwn{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-top:8px}.hwn .big{font-size:26px}
+.ipb{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:10px;padding:10px 14px;border-radius:16px;background:rgba(255,255,255,.28);font-size:13px;font-weight:700}
+.ipb span{color:var(--mut)}.ipb b{font-family:ui-monospace,Menlo,Consolas,monospace;word-break:break-all;text-align:right}
+body,body *{letter-spacing:normal!important}
+h1{line-height:1.35}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}}
 </style></head>
 <body>
 <div class="bg"><i></i><i></i><i></i></div>
 <div id="app"><div id="view"></div></div>
-<nav id="tabs" class="glass off" aria-label="Pages"><i class="thumb"></i>
-<a href="#/dashboard" data-p="dashboard" aria-label="Home"><svg class="i" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v10a1 1 0 01-1 1h-5v-7H9v7H4a1 1 0 01-1-1z"/></svg>Home</a>
-<a href="#/servers" data-p="servers" aria-label="Servers"><svg class="i" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zM2 12h20M12 2c3 3 4 6.5 4 10s-1 7-4 10c-3-3-4-6.5-4-10s1-7 4-10z"/></svg>Servers</a></nav>
+<nav id="tabs" class="glass off" aria-label="ទំព័រ"><i class="thumb"></i>
+<a href="#/dashboard" data-p="dashboard" aria-label="ទំព័រដើម"><svg class="i" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v10a1 1 0 01-1 1h-5v-7H9v7H4a1 1 0 01-1-1z"/></svg>ទំព័រដើម</a>
+<a href="#/servers" data-p="servers" aria-label="ម៉ាស៊ីនមេ"><svg class="i" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zM2 12h20M12 2c3 3 4 6.5 4 10s-1 7-4 10c-3-3-4-6.5-4-10s1-7 4-10z"/></svg>ម៉ាស៊ីនមេ</a></nav>
 <div id="toast" class="glass" role="status" aria-live="polite"></div>
 <script>
 /* ===== SETTINGS =====
@@ -159,11 +173,17 @@ const C=window.CFG||{},view=document.getElementById('view'),tabs=document.getEle
 const D=/[?&]demo/.test(location.search);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const ls={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},del:k=>{try{localStorage.removeItem(k)}catch(e){}}};
+/* browser ID sent to PHP with every login so the device list can show this browser (agent + IP are read by the server) */
+const DID=(()=>{let v=ls.get('vip_did');if(!/^[a-z0-9-]{16,64}$/.test(v||'')){try{v=crypto.randomUUID()}catch(e){v=(Date.now().toString(36)+Math.random().toString(36).slice(2)+Math.random().toString(36).slice(2)).padEnd(24,'0')}ls.set('vip_did',v)}return v})();
+const KM={'Invalid UUID':'UUID មិនត្រឹមត្រូវ','UUID not found':'រកមិនឃើញ UUID នេះទេ','Session expired. Please log in again.':'សម័យចូលប្រើបានផុតកំណត់។ សូមចូលម្តងទៀត។','Domain not allowed':'ដែនគេហទំព័រនេះមិនត្រូវបានអនុញ្ញាតទេ','Too many attempts. Try again in a few minutes.':'ព្យាយាមច្រើនដងពេក។ សូមសាកល្បងម្តងទៀតក្នុងរយៈពេលប៉ុន្មាននាទី។','POST only':'អនុញ្ញាតតែ POST ប៉ុណ្ណោះ','Encrypted link is not available':'តំណដែលបានអ៊ិនគ្រីបមិនអាចប្រើបានទេ','Unknown network':'មិនស្គាល់បណ្តាញនេះទេ','Request failed':'សំណើបរាជ័យ','Bad server response':'ការឆ្លើយតបពីម៉ាស៊ីនមេមិនត្រឹមត្រូវ','Could not create the encrypted link, try again':'មិនអាចបង្កើតតំណអ៊ិនគ្រីបបានទេ សូមព្យាយាមម្តងទៀត'};
+const km=m=>KM[m]||m;
+const QN={Excellent:'ល្អប្រសើរ',Good:'ល្អ',Fair:'មធ្យម'};
 const UU=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-const P={crown:'M3 7l4 4 5-7 5 7 4-4-2 12H5z',out:'M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9',copy:'M9 9h10a1 1 0 011 1v10a1 1 0 01-1 1H9a1 1 0 01-1-1V10a1 1 0 011-1zM5 15H4a1 1 0 01-1-1V4a1 1 0 011-1h10a1 1 0 011 1v1',check:'M5 12.5l4.5 4.5L19 7.5',dl:'M12 4v11M7 11l5 5 5-5M5 20h14',bolt:'M13 2L4 14h7l-1 8 9-12h-7z',paste:'M9 4h6v3H9zM7 5H6a1 1 0 00-1 1v14a1 1 0 001 1h12a1 1 0 001-1V6a1 1 0 00-1-1h-1',arrow:'M5 12h14M13 6l6 6-6 6'};
+const P={crown:'M3 7l4 4 5-7 5 7 4-4-2 12H5z',out:'M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9',copy:'M9 9h10a1 1 0 011 1v10a1 1 0 01-1 1H9a1 1 0 01-1-1V10a1 1 0 011-1zM5 15H4a1 1 0 01-1-1V4a1 1 0 011-1h10a1 1 0 011 1v1',check:'M5 12.5l4.5 4.5L19 7.5',dl:'M12 4v11M7 11l5 5 5-5M5 20h14',bolt:'M13 2L4 14h7l-1 8 9-12h-7z',paste:'M9 4h6v3H9zM7 5H6a1 1 0 00-1 1v14a1 1 0 001 1h12a1 1 0 001-1V6a1 1 0 00-1-1h-1',arrow:'M5 12h14M13 6l6 6-6 6',phone:'M8 2h8a1 1 0 011 1v18a1 1 0 01-1 1H8a1 1 0 01-1-1V3a1 1 0 011-1zM11 18h2',pc:'M3 4h18a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1zM8 21h8M12 17v4'};
 const ic=n=>`<svg class="i" viewBox="0 0 24 24"><path d="${P[n]}"/></svg>`;
 const fb=b=>{b=+b||0;const u=['B','KB','MB','GB','TB'];let i=0;while(b>=1024&&i<4){b/=1024;i++}return(i>1?b.toFixed(2):Math.round(b))+' '+u[i]};
-const fd=t=>new Date(t*1000).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
+const fd=t=>{try{return new Date(t*1000).toLocaleDateString('km-KH',{year:'numeric',month:'short',day:'numeric'})}catch(e){return new Date(t*1000).toLocaleDateString()}};
+const fdt=t=>{if(!t)return'–';try{return new Date(t*1000).toLocaleString('km-KH',{year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})}catch(e){return new Date(t*1000).toLocaleString()}};
 const go=p=>{const h='#/'+p;if(location.hash===h)route();else location.hash=h};
 const S={data:null,at:0,happ:{},pref:{net:ls.get('vip_net')||'',srv:ls.get('vip_srv')||''}};
 let tmr=0;
@@ -174,14 +194,14 @@ const demo=async(a,b)=>{await new Promise(r=>setTimeout(r,300));if(a==='happ')re
 member:{status:'active',days:30,created:n-12*86400,expires:n+18*86400},bandwidth:{unlimited:false,quota:107374182400,up:6.2e9,down:41.8e9},subUrls:{'':'https://example.com/?e=demo','smart':'https://example.com/?e=smart','cellcard':'https://example.com/?e=cell','metfone':'https://example.com/?e=metfone'},
 networks:[{id:'smart',name:'Smart'},{id:'cellcard',name:'Cellcard'},{id:'metfone',name:'Metfone'}],
 servers:[{id:'s1',name:'Cambodia',flag:'https://flagcdn.com/w80/kh.png',ping:20,quality:'Excellent',allNets:false,networkIds:['smart','cellcard']},{id:'s2',name:'Singapore',flag:'https://flagcdn.com/w80/sg.png',ping:34,quality:'Excellent',allNets:true,networkIds:[]},{id:'s3',name:'United States',flag:'https://flagcdn.com/w80/us.png',ping:218,quality:'Fair',allNets:false,networkIds:['metfone']}],
-apps:[{id:'happ',name:'Happ',sub:'Android · iOS · Desktop',icon:'',scheme:'happ://add/{raw}',ios:'#',android:'#',pc:'#'},{id:'v2box',name:'V2Box',sub:'iOS · V2Ray client',icon:'',scheme:'v2box://install-sub?url={url}&name={name}',ios:'#',android:'',pc:''},{id:'v2rayng',name:'v2rayNG',sub:'Android · V2Ray client',icon:'',scheme:'v2rayng://install-sub?url={url}&name={name}',ios:'',android:'#',pc:''}]}};
+hwid:{limit:2,used:2,devices:[{id:'a1b2c3…9f10',os:'Android 14',model:'Samsung A54',agent:'Happ/2.1 (Android)',ip:'103.1.2.3',first:n-5*86400,last:n-600},{id:'d4e5f6…1a2b',os:'iOS 17',model:'iPhone 13',agent:'Happ/2.1 (iOS)',ip:'117.20.4.8',first:n-3*86400,last:n-86400}]},web:{ip:'103.1.2.3',agent:navigator.userAgent,devices:[{kind:'mobile',os:'Android',browser:'Chrome',agent:navigator.userAgent,ip:'103.1.2.3',first:n-86400,last:n,current:true}]},apps:[{id:'happ',name:'Happ',sub:'Android · iOS · Desktop',icon:'',scheme:'happ://add/{raw}',ios:'#',android:'#',pc:'#'},{id:'v2box',name:'V2Box',sub:'iOS · V2Ray client',icon:'',scheme:'v2box://install-sub?url={url}&name={name}',ios:'#',android:'',pc:''},{id:'v2rayng',name:'v2rayNG',sub:'Android · V2Ray client',icon:'',scheme:'v2rayng://install-sub?url={url}&name={name}',ios:'',android:'#',pc:''}]}};
 async function api(a,body){
  if(D)return demo(a,body||{});
  const ac=new AbortController(),to=setTimeout(()=>ac.abort(),15000);let r;
- try{r=await fetch(C.API+(C.API.includes('?')?'&':'?')+'api=vip_'+a,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body||{}),signal:ac.signal})}
- catch(e){throw new Error('Cannot reach the server')}finally{clearTimeout(to)}
- const j=await r.json().catch(()=>({ok:false,error:'Bad server response'}));
- if(!j.ok){const e=new Error(j.error||'Request failed');e.code=r.status;throw e}return j;
+ try{r=await fetch(C.API+(C.API.includes('?')?'&':'?')+'api=vip_'+a,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({},body||{},{did:DID})),signal:ac.signal})}
+ catch(e){throw new Error('មិនអាចភ្ជាប់ទៅម៉ាស៊ីនមេបានទេ')}finally{clearTimeout(to)}
+ const j=await r.json().catch(()=>({ok:false,error:'ការឆ្លើយតបពីម៉ាស៊ីនមេមិនត្រឹមត្រូវ'}));
+ if(!j.ok){const e=new Error(km(j.error)||'សំណើបរាជ័យ');e.code=r.status;throw e}return j;
 }
 async function fetchMe(){const j=await api('me',{token:ls.get('vip_token')});S.data=j;S.at=Date.now();return j}
 
@@ -202,8 +222,8 @@ const hue=n=>{let h=0;for(const c of String(n))h=(h*31+c.charCodeAt(0))%360;retu
 const tileOf=a=>{const i=(a.icon||'').trim(),emo=i&&!/^https?:/i.test(i)&&!/^fa[-\s]/i.test(i)&&i.length<=4;
  return`<span class="tile" style="--h:${hue(a.name)}">${emo?esc(i):esc((a.name||'?')[0].toUpperCase())}${/^https?:\/\//i.test(i)?`<img src="${esc(i)}" alt="" loading="lazy" onerror="this.remove()">`:''}</span>`};
 async function copy(t,btn,label){try{await navigator.clipboard.writeText(t)}catch(e){const x=document.createElement('textarea');x.value=t;x.style.cssText='position:fixed;opacity:0';document.body.appendChild(x);x.select();try{document.execCommand('copy')}catch(_){}x.remove()}
- toast('Copied to clipboard');if(!btn)return;const o=btn.innerHTML;btn.classList.add('ok');btn.innerHTML=ic('check')+(btn.classList.contains('ic')?'':'Copied');setTimeout(()=>{btn.classList.remove('ok');btn.innerHTML=o},1800)}
-const top=()=>`<div class="top"><div class="brand"><span class="ib glass" style="width:40px;height:40px;color:var(--acc)">${ic('crown')}</span>${esc(C.NAME||'VIP')}</div><button class="ib glass" data-act="logout" aria-label="Log out">${ic('out')}</button></div>`;
+ toast('បានចម្លងទៅ Clipboard');if(!btn)return;const o=btn.innerHTML;btn.classList.add('ok');btn.innerHTML=ic('check')+(btn.classList.contains('ic')?'':'បានចម្លង');setTimeout(()=>{btn.classList.remove('ok');btn.innerHTML=o},1800)}
+const top=()=>`<div class="top"><div class="brand"><span class="ib glass" style="width:40px;height:40px;color:var(--acc)">${ic('crown')}</span>${esc(C.NAME||'VIP')}</div><button class="ib glass" data-act="logout" aria-label="ចាកចេញ">${ic('out')}</button></div>`;
 
 /* login lockout (kept in this browser; the server also limits per IP) */
 const lockLeft=()=>Math.max(0,Math.ceil((+(ls.get('vip_lock')||0)-Date.now())/1000));
@@ -214,70 +234,94 @@ function clearFails(){ls.del('vip_fails');ls.del('vip_lock')}
 /* ---------- views ---------- */
 function renderLogin(){
  let msg='';try{msg=sessionStorage.getItem('vip_msg')||'';sessionStorage.removeItem('vip_msg')}catch(e){}
- view.innerHTML=`<section class="page login stg"><div class="logo glass">${ic('crown')}</div><h1>Welcome<br>back</h1><p class="eyebrow" style="margin-top:6px">Sign in with your VIP UUID</p>
- <div class="card glass" style="margin-top:22px"><label for="u">UUID</label><div class="field"><input id="u" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="sm" id="pa" aria-label="Paste" style="height:52px;width:52px;padding:0;justify-content:center">${ic('paste')}</button></div>
- <button class="btn" id="go">Login</button><p class="err" id="er" role="alert">${esc(msg)}</p></div></section>`;
+ view.innerHTML=`<section class="page login stg"><div class="logo glass">${ic('crown')}</div><h1>ស្វាគមន៍<br>ការត្រឡប់មកវិញ</h1><p class="eyebrow" style="margin-top:6px">ចូលប្រើដោយ UUID VIP របស់អ្នក</p>
+ <div class="card glass" style="margin-top:22px"><label for="u">UUID</label><div class="field"><input id="u" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="sm" id="pa" aria-label="បិទភ្ជាប់" style="height:52px;width:52px;padding:0;justify-content:center">${ic('paste')}</button></div>
+ <button class="btn" id="go">ចូលប្រើ</button><p class="err" id="er" role="alert">${esc(msg)}</p></div></section>`;
  const u=document.getElementById('u'),b=document.getElementById('go'),er=document.getElementById('er');let tm=0,locked=false;
  const bad=m=>{er.textContent=m;er.classList.remove('shake');void er.offsetWidth;er.classList.add('shake')};
  const tick=()=>{clearTimeout(tm);const s=lockLeft();
-  if(s>0){locked=true;u.disabled=b.disabled=true;b.textContent='Wait '+mmss(s);er.textContent='Too many failed attempts. Please wait to login again.';tm=setTimeout(tick,1000)}
-  else if(locked){locked=false;u.disabled=b.disabled=false;b.textContent='Login';er.textContent='';u.focus()}};
+  if(s>0){locked=true;u.disabled=b.disabled=true;b.textContent='រង់ចាំ '+mmss(s);er.textContent='ព្យាយាមខុសច្រើនដងពេក។ សូមរង់ចាំមុនពេលចូលម្តងទៀត។';tm=setTimeout(tick,1000)}
+  else if(locked){locked=false;u.disabled=b.disabled=false;b.textContent='ចូលប្រើ';er.textContent='';u.focus()}};
  const run=async()=>{if(lockLeft()>0)return tick();const v=u.value.trim().toLowerCase();er.textContent='';
-  if(!UU.test(v)&&!D){bad('Enter a valid UUID');return}
-  b.disabled=true;b.textContent='Checking…';
+  if(!UU.test(v)&&!D){bad('សូមបញ្ចូល UUID ដែលត្រឹមត្រូវ');return}
+  b.disabled=true;b.textContent='កំពុងពិនិត្យ…';
   try{const j=await api('login',{uuid:v});clearFails();ls.set('vip_token',j.token);S.data=j;S.at=Date.now();go('dashboard')}
-  catch(e){b.disabled=false;b.textContent='Login';
-   if(e.code===400||e.code===404||e.code===429){const n=addFail(e.code);if(lockLeft()>0)return tick();bad(e.message+(n<3?' ('+(3-n)+' '+(3-n===1?'try':'tries')+' left before a wait)':''))}
+  catch(e){b.disabled=false;b.textContent='ចូលប្រើ';
+   if(e.code===400||e.code===404||e.code===429){const n=addFail(e.code);if(lockLeft()>0)return tick();bad(e.message+(n<3?' (នៅសល់ '+(3-n)+' ដង មុនពេលត្រូវរង់ចាំ)':''))}
    else bad(e.message)}};
  b.onclick=run;u.onkeydown=e=>{if(e.key==='Enter')run()};
- document.getElementById('pa').onclick=async()=>{try{const t=(await navigator.clipboard.readText()).trim();if(t){u.value=t;run()}}catch(e){u.focus();toast('Long-press the field to paste')}};
+ document.getElementById('pa').onclick=async()=>{try{const t=(await navigator.clipboard.readText()).trim();if(t){u.value=t;run()}}catch(e){u.focus();toast('សូមចុចឱ្យយូរលើប្រអប់ដើម្បីបិទភ្ជាប់')}};
  tick();
+}
+/* ---------- widgets: HWID app devices + website logins (data comes from the PHP API) ---------- */
+const devIc=(os,kind)=>/android|ios|iphone|ipad|mobile|tablet|phone/i.test((os||'')+' '+(kind||''))?'phone':'pc';
+const agentTxt=a=>String(a||'').trim();
+function hwidHTML(d){
+ const h=d.hwid;if(!h)return'';
+ const lim=+h.limit||0,used=+h.used||0,full=lim>0&&used>=lim,pct=lim>0?Math.min(1,used/lim):0,left=Math.max(0,lim-used);
+ const list=(h.devices||[]).map(x=>`<div class="dv"><span class="di">${ic(devIc(x.os))}</span><div class="dt"><b>${esc(x.model||x.os||'ឧបករណ៍')}</b>
+  <small>${esc([x.os,x.id].filter(Boolean).join(' · '))}</small>${agentTxt(x.agent)?`<small class="ag">Agent: ${esc(agentTxt(x.agent))}</small>`:''}
+  <small>IP: ${esc(x.ip||'–')}</small><small>ប្រើចុងក្រោយ: ${esc(fdt(x.last))}</small></div></div>`).join('');
+ return`<article class="card glass"><div class="cardhd"><span>ឧបករណ៍ HWID</span><small>${lim>0?(full?'ពេញកំណត់':'នៅសល់ '+left+' ឧបករណ៍'):'គ្មានកំណត់'}</small></div>
+ <div class="hwn"><span class="big">${lim>0?`បានដាក់ ${used}/${lim} ដង`:`បានដាក់ ${used} ដង`}</span></div>
+ ${lim>0?`<div class="bar" style="${full?'--x:1':''}"><u style="--p:${pct}${full?';background:linear-gradient(90deg,#f0a43a,#e5486a)':''}"></u></div>`:''}
+ <div class="dvl">${list||'<p class="note" style="margin:0">មិនទាន់មានឧបករណ៍ HWID ទេ។ ពេលអ្នកបន្ថែមតំណ Subscription ទៅក្នុងកម្មវិធី (Happ, v2RayTun…) ឧបករណ៍នឹងបង្ហាញនៅទីនេះ។</p>'}</div></article>`;
+}
+function webHTML(d){
+ const w=d.web;if(!w)return'';
+ const list=(w.devices||[]).map(x=>`<div class="dv"><span class="di">${ic(devIc(x.os,x.kind))}</span><div class="dt"><b>${esc([x.browser,x.os].filter(Boolean).join(' · ')||'ឧបករណ៍')}${x.current?'<span class="pill">ឧបករណ៍នេះ</span>':''}</b>
+  ${agentTxt(x.agent)?`<small class="ag">Agent: ${esc(agentTxt(x.agent))}</small>`:''}<small>IP: ${esc(x.ip||'–')}</small>
+  <small>ចូលដំបូង: ${esc(fdt(x.first))}</small><small>ប្រើចុងក្រោយ: ${esc(fdt(x.last))}</small></div></div>`).join('');
+ return`<article class="card glass"><div class="cardhd"><span>ការចូលតាមគេហទំព័រ</span><small>${(w.devices||[]).length} ឧបករណ៍</small></div>
+ <div class="ipb"><span>IP របស់អ្នក</span><b>${esc(w.ip||'–')}</b></div>
+ <div class="dvl">${list}</div></article>`;
 }
 function dashHTML(d){
  const m=d.member,b=d.bandwidth,now=Date.now()/1000,left=Math.max(0,Math.ceil((m.expires-now)/86400)),act=m.expires>now&&m.status==='active';
  const used=(b.up||0)+(b.down||0),unl=b.unlimited||!b.quota,pct=unl?0:Math.min(1,used/b.quota),dp=m.days?Math.min(1,left/m.days):0,c=2*Math.PI*44;
- return`${top()}<div><p class="eyebrow">Hello, ${esc(d.uuid.slice(0,8).toUpperCase())}</p><h1>Stay<br>connected</h1></div>
- <article class="card glass heroc" style="margin-top:22px"><div class="ring"><svg viewBox="0 0 104 104"><defs><linearGradient id="rg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#b793ff"/><stop offset="1" stop-color="#6a43f0"/></linearGradient></defs><circle class="t" cx="52" cy="52" r="44"/><circle class="v" cx="52" cy="52" r="44" stroke="url(#rg)" style="--c:${c};--to:${c*(1-dp)}"/></svg><div><b>${left}</b><small>days left</small></div></div>
- <div><span class="badge ${act?'':'x'}">${act?'Active':'Expired'}</span><h2>Membership</h2><p>${fd(m.created)} → ${fd(m.expires)}</p></div></article>
- <article class="card glass"><div class="cardhd"><span>Bandwidth</span><small>${unl?'Unlimited plan':fb(b.quota)+' plan'}</small></div>
- <div class="big" style="margin-top:8px">${fb(used)} <small>${unl?'used':'of '+fb(b.quota)}</small></div><div class="bar"><u style="--p:${unl?1:pct}"></u></div>
- <div class="stats"><div><span>Download</span><b>${fb(b.down)}</b></div><div><span>Upload</span><b>${fb(b.up)}</b></div><div><span>Remaining</span><b>${unl?'∞':fb(Math.max(0,b.quota-used))}</b></div></div></article>
- <article class="card glass"><div class="cardhd"><span>Your login ID</span></div><div class="uu"><code>${esc(d.uuid)}</code><button class="sm" data-act="copyuuid">${ic('copy')}Copy</button></div></article>
- <button class="btn" data-act="go" data-to="servers">Connect now ${ic('arrow')}</button>`;
+ return`${top()}<div><p class="eyebrow">សួស្តី, ${esc(d.uuid.slice(0,8).toUpperCase())}</p><h1>ភ្ជាប់<br>ជានិច្ច</h1></div>
+ <article class="card glass heroc" style="margin-top:22px"><div class="ring"><svg viewBox="0 0 104 104"><defs><linearGradient id="rg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#b793ff"/><stop offset="1" stop-color="#6a43f0"/></linearGradient></defs><circle class="t" cx="52" cy="52" r="44"/><circle class="v" cx="52" cy="52" r="44" stroke="url(#rg)" style="--c:${c};--to:${c*(1-dp)}"/></svg><div><b>${left}</b><small>ថ្ងៃនៅសល់</small></div></div>
+ <div><span class="badge ${act?'':'x'}">${act?'សកម្ម':'ផុតកំណត់'}</span><h2>សមាជិកភាព</h2><p>${fd(m.created)} → ${fd(m.expires)}</p></div></article>
+ <article class="card glass"><div class="cardhd"><span>ទិន្នន័យ (Bandwidth)</span><small>${unl?'គម្រោងគ្មានកំណត់':'គម្រោង '+fb(b.quota)}</small></div>
+ <div class="big" style="margin-top:8px">${fb(used)} <small>${unl?'បានប្រើ':'ពី '+fb(b.quota)}</small></div><div class="bar"><u style="--p:${unl?1:pct}"></u></div>
+ <div class="stats"><div><span>ទាញយក</span><b>${fb(b.down)}</b></div><div><span>បង្ហោះ</span><b>${fb(b.up)}</b></div><div><span>នៅសល់</span><b>${unl?'∞':fb(Math.max(0,b.quota-used))}</b></div></div></article>
+ <article class="card glass"><div class="cardhd"><span>លេខសម្គាល់ចូលរបស់អ្នក</span></div><div class="uu"><code>${esc(d.uuid)}</code><button class="sm" data-act="copyuuid">${ic('copy')}ចម្លង</button></div></article>
+ ${hwidHTML(d)}${webHTML(d)}
+ <button class="btn" data-act="go" data-to="servers">ភ្ជាប់ឥឡូវនេះ ${ic('arrow')}</button>`;
 }
-const netsHTML=d=>nets(d).map(n=>`<button class="chip ${n.id===S.pref.net?'on':''}" data-act="net" data-id="${esc(n.id)}">${esc(n.name)}</button>`).join('')||'<small style="padding:8px 14px;color:var(--mut)">No networks</small>';
-const srvHTML=d=>{const q={Excellent:'#2fb67c',Good:'#7bc043',Fair:'#f0a43a'};return vis(d).map(s=>`<button class="srv ${s.id===S.pref.srv?'on':''}" data-act="srv" data-id="${esc(s.id)}"><img class="flag" src="${esc(s.flag)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'"><span class="nm">${esc(s.name)}<small><i class="dot" style="background:${q[s.quality]||'#aaa'}"></i>${esc(s.quality)}</small></span><span class="ms">${+s.ping||'–'} ms</span><span class="tick">${ic('check')}</span></button>`).join('')||'<p class="note" style="padding:10px 12px;margin:0">No servers for this network.</p>'};
+const netsHTML=d=>nets(d).map(n=>`<button class="chip ${n.id===S.pref.net?'on':''}" data-act="net" data-id="${esc(n.id)}">${esc(n.name)}</button>`).join('')||'<small style="padding:8px 14px;color:var(--mut)">គ្មានបណ្តាញ</small>';
+const srvHTML=d=>{const q={Excellent:'#2fb67c',Good:'#7bc043',Fair:'#f0a43a'};return vis(d).map(s=>`<button class="srv ${s.id===S.pref.srv?'on':''}" data-act="srv" data-id="${esc(s.id)}"><img class="flag" src="${esc(s.flag)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'"><span class="nm">${esc(s.name)}<small><i class="dot" style="background:${q[s.quality]||'#aaa'}"></i>${esc(QN[s.quality]||s.quality)}</small></span><span class="ms">${+s.ping||'–'} ms</span><span class="tick">${ic('check')}</span></button>`).join('')||'<p class="note" style="padding:10px 12px;margin:0">គ្មានម៉ាស៊ីនមេសម្រាប់បណ្តាញនេះទេ។</p>'};
 function appsHTML(d){const p=plat(),L=(d.apps||[]).slice().sort((a,b)=>!!b[p]-!!a[p]);
  return L.map(a=>{const dl=a[p]||a.ios||a.android||a.pc,id=esc(a.id);
   return`<div class="app"><button class="main" data-act="import" data-id="${id}">${tileOf(a)}<span class="nm">${esc(a.name)}<small>${esc(a.sub)}</small></span></button>
-  <button class="sm ic" data-act="copyapp" data-id="${id}" title="Copy subscription URL" aria-label="Copy ${esc(a.name)} subscription URL">${ic('copy')}</button>${dl?`<a class="sm ic" href="${esc(dl)}" target="_blank" rel="noopener" title="Get ${esc(a.name)}" aria-label="Download ${esc(a.name)}">${ic('dl')}</a>`:''}</div>`}).join('')||'<p class="note" style="padding:10px 12px;margin:0">No apps listed.</p>'}
+  <button class="sm ic" data-act="copyapp" data-id="${id}" title="ចម្លងតំណ Subscription" aria-label="ចម្លងតំណ Subscription របស់ ${esc(a.name)}">${ic('copy')}</button>${dl?`<a class="sm ic" href="${esc(dl)}" target="_blank" rel="noopener" title="ទាញយក ${esc(a.name)}" aria-label="ទាញយក ${esc(a.name)}">${ic('dl')}</a>`:''}</div>`}).join('')||'<p class="note" style="padding:10px 12px;margin:0">មិនមានកម្មវិធីក្នុងបញ្ជីទេ។</p>'}
 function serversHTML(d){
- return`${top()}<div><p class="eyebrow">Connection preferences</p><h1>Pick your<br>route</h1></div>
- <div class="sec"><span>Network</span></div><div class="chips glass" id="nets">${netsHTML(d)}</div>
- <div class="sec"><span>Servers</span><small id="cnt">${vis(d).length} available</small></div><div class="list glass" id="sv">${srvHTML(d)}</div>
- <div class="sec"><span>Supported apps</span><small>tap to import</small></div><div class="list glass" id="ap">${appsHTML(d)}</div>
- <p class="note">Tap an app to import your subscription automatically, or tap the copy button to copy its subscription URL.</p>`;
+ return`${top()}<div><p class="eyebrow">ជម្រើសការតភ្ជាប់</p><h1>ជ្រើសរើស<br>ម៉ាស៊ីនមេ</h1></div>
+ <div class="sec"><span>បណ្តាញ</span></div><div class="chips glass" id="nets">${netsHTML(d)}</div>
+ <div class="sec"><span>ម៉ាស៊ីនមេ</span><small id="cnt">${vis(d).length} អាចប្រើបាន</small></div><div class="list glass" id="sv">${srvHTML(d)}</div>
+ <div class="sec"><span>កម្មវិធីដែលគាំទ្រ</span><small>ចុចដើម្បីនាំចូល</small></div><div class="list glass" id="ap">${appsHTML(d)}</div>
+ <p class="note">ចុចលើកម្មវិធីដើម្បីនាំចូល Subscription ដោយស្វ័យប្រវត្តិ ឬចុចប៊ូតុងចម្លងដើម្បីចម្លងតំណ Subscription។</p>`;
 }
-function paint(d,ids){const m={nets:['nets',netsHTML],sv:['sv',srvHTML],ap:['ap',appsHTML]};ids.forEach(k=>{const el=document.getElementById(m[k][0]);if(el)el.innerHTML=m[k][1](d)});const c=document.getElementById('cnt');if(c)c.textContent=vis(d).length+' available'}
+function paint(d,ids){const m={nets:['nets',netsHTML],sv:['sv',srvHTML],ap:['ap',appsHTML]};ids.forEach(k=>{const el=document.getElementById(m[k][0]);if(el)el.innerHTML=m[k][1](d)});const c=document.getElementById('cnt');if(c)c.textContent=vis(d).length+' អាចប្រើបាន'}
 
 /* ---------- subscription: encrypted URL copy + import (same as the PHP site) ---------- */
 async function happLink(){const n=S.pref.net;if(S.happ[n])return S.happ[n];
- const j=await api('happ',{token:ls.get('vip_token'),net:n}),l=String(j.link||'');if(!/^happ:\/\//i.test(l))throw new Error('Could not create the encrypted link, try again');S.happ[n]=l;return l}
+ const j=await api('happ',{token:ls.get('vip_token'),net:n}),l=String(j.link||'');if(!/^happ:\/\//i.test(l))throw new Error('មិនអាចបង្កើតតំណអ៊ិនគ្រីបបានទេ សូមព្យាយាមម្តងទៀត');S.happ[n]=l;return l}
 const prefetch=d=>{if((d.apps||[]).some(isHapp)&&subFor(d))happLink().catch(()=>{})};   /* ready before the tap, so the app opens instantly */
-async function linkFor(a,d){if(isHapp(a))return happLink();const r=subFor(d,a);if(!r)throw new Error('Subscription link is not enabled on the server');return r}
+async function linkFor(a,d){if(isHapp(a))return happLink();const r=subFor(d,a);if(!r)throw new Error('តំណ Subscription មិនបានបើកនៅលើម៉ាស៊ីនមេទេ');return r}
 async function copyApp(a,btn){try{copy(await linkFor(a,S.data),btn)}catch(e){toast(e.message)}}
 async function importApp(a){const d=S.data;let l;
  try{l=await linkFor(a,d)}catch(e){return toast(e.message)}
  if(isHapp(a)){copy(l);location.href=l;return}
- const k=importLink(a,l,(netName(d)||'AnajakVPN VIP').toUpperCase());if(!k)return toast('This app has no import link');
- toast('Opening '+a.name+'…');const t=setTimeout(()=>{if(!document.hidden)toast('App didn’t open? Install it with “Get”, then use the copy button.')},1800);
+ const k=importLink(a,l,(netName(d)||'AnajakVPN VIP').toUpperCase());if(!k)return toast('កម្មវិធីនេះមិនមានតំណនាំចូលទេ');
+ toast('កំពុងបើក '+a.name+'…');const t=setTimeout(()=>{if(!document.hidden)toast('កម្មវិធីមិនបើកទេ? សូមដំឡើងវាដោយប៊ូតុងទាញយក រួចប្រើប៊ូតុងចម្លង។')},1800);
  document.addEventListener('visibilitychange',()=>clearTimeout(t),{once:true});location.href=k}
 
 /* ---------- router ---------- */
 let rid=0;
 const skeleton=()=>`<section class="page">${top()}<div class="sk" style="margin-top:90px"></div><div class="sk"></div><div class="sk" style="height:110px"></div></section>`;
 function show(pg,d,still){if(pg==='servers')prefetch(d);view.innerHTML=`<section class="page stg${still?' still':''}">${pg==='servers'?serversHTML(d):dashHTML(d)}</section>`}
-function fail(e){view.innerHTML=`<section class="page"><div class="card glass center" style="margin-top:120px"><h1 style="font-size:26px">Something went wrong</h1><p>${esc(e.message)}${/domain/i.test(e.message)?'<br><small>Add this website’s domain in Admin › Website API.</small>':''}</p><button class="btn" data-act="retry">Try again</button><button class="sm" data-act="logout" style="margin-top:12px">Log out</button></div></section>`}
+function fail(e){view.innerHTML=`<section class="page"><div class="card glass center" style="margin-top:120px"><h1 style="font-size:26px">មានបញ្ហាកើតឡើង</h1><p>${esc(e.message)}${/domain|ដែន/i.test(e.message)?'<br><small>សូមបន្ថែមដែនគេហទំព័រនេះក្នុង Admin › Website API។</small>':''}</p><button class="btn" data-act="retry">ព្យាយាមម្តងទៀត</button><button class="sm" data-act="logout" style="margin-top:12px">ចាកចេញ</button></div></section>`}
 async function route(){
  const id=++rid;let pg=location.hash.replace(/^#\/?/,'').replace('.html','');if(pg==='apps')pg='servers';
  const authed=!!ls.get('vip_token')||D;
