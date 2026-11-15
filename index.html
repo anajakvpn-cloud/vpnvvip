@@ -189,7 +189,7 @@ async function fetchMe(){const j=await api('me',{token:ls.get('vip_token')});S.d
 const nets=d=>d.networks||[];
 const vis=d=>(d.servers||[]).filter(s=>!S.pref.net||s.allNets||(s.networkIds||[]).includes(S.pref.net));
 function fixPref(d){const p=S.pref;if(!nets(d).some(n=>n.id===p.net))p.net=nets(d)[0]?.id||'';const l=vis(d);if(!l.some(s=>s.id===p.srv))p.srv=l[0]?.id||'';ls.set('vip_net',p.net);ls.set('vip_srv',p.srv)}
-const subFor=d=>{const m=d.subUrls||{};return m[S.pref.net]||m['']||''};
+const subFor=(d,a)=>{const m=(a&&/^v2box:/i.test(a.scheme||'')&&d.subUrlsV2box)||d.subUrls||{};return m[S.pref.net]||m['']||''};   /* V2Box gets its own link, locked to the V2Box app */
 const plat=()=>/iPhone|iPad|iPod/i.test(navigator.userAgent)?'ios':/Android/i.test(navigator.userAgent)?'android':'pc';
 const importLink=(a,raw,nm)=>{const s=a.scheme||'';if(!raw||!/^[a-z][a-z0-9+.\-]*:\/\//i.test(s)||/^(javascript|data|vbscript|file):/i.test(s))return'';
  const v2=/^v2box:/i.test(s),u=encodeURIComponent(v2?raw+'#'+nm:raw);   /* V2Box: name also goes in the #title of the URL */
@@ -264,7 +264,7 @@ function paint(d,ids){const m={nets:['nets',netsHTML],sv:['sv',srvHTML],ap:['ap'
 async function happLink(){const n=S.pref.net;if(S.happ[n])return S.happ[n];
  const j=await api('happ',{token:ls.get('vip_token'),net:n}),l=String(j.link||'');if(!/^happ:\/\//i.test(l))throw new Error('Could not create the encrypted link, try again');S.happ[n]=l;return l}
 const prefetch=d=>{if((d.apps||[]).some(isHapp)&&subFor(d))happLink().catch(()=>{})};   /* ready before the tap, so the app opens instantly */
-async function linkFor(a,d){if(isHapp(a))return happLink();const r=subFor(d);if(!r)throw new Error('Subscription link is not enabled on the server');return r}
+async function linkFor(a,d){if(isHapp(a))return happLink();const r=subFor(d,a);if(!r)throw new Error('Subscription link is not enabled on the server');return r}
 async function copyApp(a,btn){try{copy(await linkFor(a,S.data),btn)}catch(e){toast(e.message)}}
 async function importApp(a){const d=S.data;let l;
  try{l=await linkFor(a,d)}catch(e){return toast(e.message)}
